@@ -154,6 +154,7 @@ o	TPS63031 OUT
 
 o	MCP23S17 VDD
 
+
 •	GND is connected to:
 
 o	BNO085 GND
@@ -170,13 +171,18 @@ o	TPS63031 GND
 
 o	MCP23S17 VSS, A2, A1, A0
 
+
 •	A0 - D0 - DAC is connected to MCP23S17 CS
+
 
 •	A8 - D8 - SCK is connected to MCP23S17 SCK
 
+
 •	A10 - D10 - MOSI is connected to MCP23S17 SI
 
+
 •	A9 - D9 - MISO is connected to MCP23S17 SO
+
 
 •	A3 - D3 is connected to:
 
@@ -184,11 +190,15 @@ o	Resistor pin2
 
 o	Push Button pin2
 
+
 •	A2 - D2 is connected to Potentiometer Piher 10mm Variable
+
 
 •	A5 - D5 - SCL is connected to BNO085 SCL/SCK/RX
 
+
 •	A4 - D4 - SDA is connected to BNO085 SDA/MISO/TX
+
 
 # MCP23S17
 
@@ -249,6 +259,10 @@ o	Push Button pin2
 # TPS63031
 
 •	VIN is connected to:
+o	18650 + 
+
+•	Vout is connected to:
+o	18650 - 
 
 # 	18650 Battery (+)
 
@@ -259,6 +273,7 @@ o	ULN2803 Darlington Array COMMON (both units)
 # 18650 Battery
 
 •	- is connected to:
+o	TPS63031 buck-boost converter
 
 o	18650 Battery Documented Code
 ---
