@@ -86,7 +86,7 @@ COMMON pins connected to motor supply for clamp diodes
 
 GND connected to system ground
 
-⚠️ Not all outputs have motors drawn in the schematic on purpose. Missing motors are implied to reduce visual clutter.
+⚠️ Not all outputs have motors drawn in the schematic on purpose to reduce visual clutter.
 
 # 4. Coin Vibration Motors
 
@@ -155,6 +155,7 @@ o	TPS63031 OUT
 o	MCP23S17 VDD
 
 
+
 •	GND is connected to:
 
 o	BNO085 GND
@@ -170,6 +171,7 @@ o	Potentiometer Piher 10mm A
 o	TPS63031 GND
 
 o	MCP23S17 VSS, A2, A1, A0
+
 
 
 •	A0 - D0 - DAC is connected to MCP23S17 CS
@@ -189,6 +191,7 @@ o	MCP23S17 VSS, A2, A1, A0
 o	Resistor pin2
 
 o	Push Button pin2
+
 
 
 •	A2 - D2 is connected to Potentiometer Piher 10mm Variable
@@ -261,8 +264,12 @@ o	Push Button pin2
 •	VIN is connected to:
 o	18650 + 
 
-•	Vout is connected to:
+•	GND is connected to:
 o	18650 - 
+
+•	VOUT is connected to:
+o	Seeeduino XIAO 3V3 
+
 
 # 	18650 Battery (+)
 
