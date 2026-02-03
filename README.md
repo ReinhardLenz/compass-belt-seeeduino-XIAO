@@ -12,6 +12,11 @@ The circuit is a system that integrates a Seeeduino XIAO microcontroller, an MCP
 
 ## Features
 
+* Always feel North**: A vibration motor on the belt buzzes gently to indicate magnetic north.
+* Smart IMU sensor**: Uses the Adafruit BNO085 (SlimeVR-compatible) 9-DOF sensor for reliable orientation tracking.
+* Custom vibration modes**: Supports intermittent and continuous haptic feedback with adjustable timing.
+* Adjustable direction offset**: Use the built-in potentiometer to rotate the north indication (0–360°).
+* Battery powered**: Dual 18650 batteries provide approximately 3 hours of navigation.
 * 16  Vibration motor arranged in a circle
 * motor pointing to magnetic north vibrates
 * SPI-controlled I/O expansion using MCP23S17
@@ -19,7 +24,7 @@ The circuit is a system that integrates a Seeeduino XIAO microcontroller, an MCP
 * Compact form factor using Seeeduino XIAO
 
 Planned features:
-
+3D box
 ---
 
 ## Hardware Components
