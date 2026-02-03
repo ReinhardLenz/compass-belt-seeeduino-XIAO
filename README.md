@@ -324,7 +324,7 @@ Current test behavior:
 
 ## License
 
-Specify your license here (e.g. MIT, GPL, CERN-OHL, etc.).
+GPL
 
 ---
 
