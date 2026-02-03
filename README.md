@@ -246,7 +246,7 @@ o	Push Button pin2
 ...
 
 •	O8 is connected to COIN VIBRATION MOTOR 
-
+https://github.com/ReinhardLenz/compass-belt-seeeduino-XIAO/tree/main
 
 
 # ULN2803 Darlington Array (Second Unit)
@@ -314,17 +314,30 @@ Current test behavior:
 
 ## Future Improvements
 
-* Add north offset calibration using a potentiometer
-* Add push button to adjust blinking speed
-* Introduce ULN2803 for improved vibrators current handling
-* Finalize and update schematic
 * Improve enclosure and wearable integration
+* Develop a mobile app for configuration via Bluetooth.
+* 3D printed box for the electronics
 
+## ⚙️ Usage
+
+### Controls
+
+- **Single Click**: Switch vibration cycle (1s, 2s, 3s, 4s)
+- **Double Click**: Toggle between continuous/intermittent mode
+- **Long Press**: Test all motors
+
+
+
+### Mounting & Wearing
+
+- The electronics are housed in a custom 3D-printed box attached to elastic “suspender-style” straps.
+- The belt with vibration motors wraps around your torso, covered with washable yellow synthetic fabric.
+- The IMU sensor must stay relatively horizontal for accurate heading detection.
 ---
 
 ## License
 
-GPL
+This project is open-source under the MIT License. See [LICENSE](LICENSE) for more information.
 
 ---
 
@@ -333,3 +346,6 @@ GPL
 * Seeed Studio – Seeeduino XIAO
 * Microchip – MCP23S17
 * Bosch / Hillcrest Labs – BNO085
+
+![Visitor Count](https://komarev.com/ghpvc/?username=ReinhardLenz&repo=compass-belt-seeeduino-XIAO&color=green)
+
