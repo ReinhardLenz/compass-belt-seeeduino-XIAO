@@ -251,7 +251,7 @@ o	Push Button pin2
 ...
 
 •	O8 is connected to COIN VIBRATION MOTOR 
-https://github.com/ReinhardLenz/compass-belt-seeeduino-XIAO/tree/main
+
 
 
 # ULN2803 Darlington Array (Second Unit)
