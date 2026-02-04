@@ -1,11 +1,9 @@
 # Compass Belt (Seeeduino XIAO + MCP23S17)
 
-
-![keltainen_vyo-vyotairoityna](https://github.com/user-attachments/assets/595fe6bb-89dd-426c-b290-7e4dc14b4f1b)
-
-
-
 <img width="751" height="359" alt="compass_illustration" src="https://github.com/user-attachments/assets/4f6872b7-1c5e-4beb-9d7e-95de2bce0bb5" />
+
+
+![keltainen_vyo-vyotairoityna](https://github.com/user-attachments/assets/7560b0e8-bc3e-4529-bb0a-b7f5bcb325cf)
 
 
 ## Overview
