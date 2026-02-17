@@ -45,7 +45,7 @@ This circuit is a complex embedded system that integrates a variety of component
 <img width="2477" height="1781" alt="circuit_image" src="https://github.com/user-attachments/assets/8d295dae-4ca2-45db-b3d6-d9cbdef87bef" />
 
 ## **Photo of breadboard**
-note, that the potentiometer is missing and there are not motores but LED's instead!
+note, that the potentiometer is missing and there are not motores but LED's instead. Also the TPS63031 is not yet inmplemented, but power supply is from Computer to Seeeduino XIAO. 
 
 ![seeeduino_XIAO_compass_Belt_breadboard_1](https://github.com/user-attachments/assets/f0536608-d132-4b15-991f-f23b8976a1ff)
 
