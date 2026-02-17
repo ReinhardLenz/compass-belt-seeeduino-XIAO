@@ -8,7 +8,7 @@ HapticBelt::HapticBelt(MCP23S17& bank)
 void HapticBelt::begin() {
   for (int i = 0; i < 16; i++){
     _bank.pinMode(i, OUTPUT);
-    _bank.digitalWrite(i, HIGH);//changed to HIGH
+    _bank.digitalWrite(i, LOW);//changed to 
   }
   //Serial.println(" HapticBelt::begin completed");
 }
@@ -40,8 +40,8 @@ void HapticBelt::on(double direction)
 //  Serial.println(position);
   uint8_t pos_int = static_cast<uint8_t>(position);
   //It seems that position is from 0 to 15
-  _bank.digitalWrite(pos_int, LOW);//changed to LOW
-  Serial.println(pos_int);
+  _bank.digitalWrite(pos_int, HIGH);//changed
+  Serial.println(pos_int); //xxxx
 }
 
 /* Used in CompassBelt like this: belt_->off(direction);
@@ -54,14 +54,14 @@ void HapticBelt::off(double direction)
     double position = (int)(direction / 22.5);
      uint8_t pos_int = static_cast<uint8_t>(position);
 
-    _bank.digitalWrite(pos_int, HIGH);//cha hihg
+    _bank.digitalWrite(pos_int, LOW);//change 
 
 }
 
 void HapticBelt::off()
 {
   for (int i = 0; i < 16; i++) {
-  _bank.digitalWrite(i, HIGH);//chang High
+  _bank.digitalWrite(i, LOW);//change low
 //  Serial.println(" HapticBelt::off - All Motors OFF");
   }
 }

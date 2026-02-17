@@ -64,12 +64,12 @@ void CompassBelt::lampTest() {
   int numberOfPins = 16;
   for (int i = 0; i < numberOfPins; i++) {
     for (int j = 0; j < numberOfPins; j++) {
-      _bank.digitalWrite(j,HIGH);//changed to high
+      _bank.digitalWrite(j,LOW);//changed to high
     }
-    _bank.digitalWrite(i,LOW);//change to low
+    _bank.digitalWrite(i,HIGH);//change to low
     delay(200);
   }
-  _bank.digitalWrite(numberOfPins - 1,HIGH);//change to high
+  _bank.digitalWrite(numberOfPins - 1,LOW);//change to high
 }
 
 

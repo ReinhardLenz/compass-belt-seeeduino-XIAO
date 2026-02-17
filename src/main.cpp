@@ -16,11 +16,11 @@ const unsigned long vibrationIntervalMillis = 1000UL;
 int degree_shift;
 long lastSerialRecv = -10000L;
 float lastSerialHeading = 0.0f;
-const int alwaysOnButtonPin = A1;
+const int alwaysOnButtonPin = 6;
 
 Compass compass;
 BNO08x imu;
-CompassBelt  compassBelt(vibrationDurationMillis, vibrationIntervalMillis,0);   // chip select = 0
+CompassBelt  compassBelt(vibrationDurationMillis, vibrationIntervalMillis,7);   // chip select = 0
 void sensorValueToDegree(int &degree_shift);
 Button buttonInstance(alwaysOnButtonPin, &compassBelt);
 
@@ -44,8 +44,8 @@ void waitForUser() {
 
 
 void setup() {
-    waitForUser();
-    delay(1000);  // give bootloader time to enumerate
+    //waitForUser();
+    delay(5000);  // give bootloader time to enumerate
     Serial.begin(9600);
 
 
@@ -79,12 +79,15 @@ void setup() {
     Compass::setReports(&imu, SH2_ROTATION_VECTOR,
                         compass.getReportInterval());
     //compassBelt.begin(); 
+    //pinMode(alwaysOnButtonPin, INPUT_PULLUP);
+
     buttonInstance.setup();
     compassBelt.setupPins(); 
     Serial.println("Setup complete");
 }
 
 void loop() {
+    //Serial.println(digitalRead(alwaysOnButtonPin));
     buttonInstance.tick();
     delay(10);
     sensorValueToDegree(degree_shift);

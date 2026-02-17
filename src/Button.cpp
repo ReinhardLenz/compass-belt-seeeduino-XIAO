@@ -3,7 +3,7 @@
 
 Button* Button::instance = nullptr;
 
-Button::Button(int pin, CompassBelt* compassBelt) : button(pin, false, false), compassBelt(compassBelt) {
+Button::Button(int pin, CompassBelt* compassBelt) : button(pin, true, false), compassBelt(compassBelt) {
     instance = this;
 }
 
