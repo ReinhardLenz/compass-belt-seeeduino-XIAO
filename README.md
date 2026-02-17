@@ -47,7 +47,8 @@ This circuit is a complex embedded system that integrates a variety of component
 ## **Photo of breadboard**
 note, that the potentiometer is missing and there are not motores but LED's instead!
 
-![seeeduino_XIAO_compass_Belt_breadboard](https://github.com/user-attachments/assets/35766f08-f9db-4c87-be02-77b84abb9d76)
+![seeeduino_XIAO_compass_Belt_breadboard_1](https://github.com/user-attachments/assets/f0536608-d132-4b15-991f-f23b8976a1ff)
+
 
 ## **Component List**
 
