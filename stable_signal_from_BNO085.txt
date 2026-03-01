@@ -1,0 +1,121 @@
+> Heading: 9.00  Accuracy: 3
+09:08:46.112 > Heading: 9.00  Accuracy: 3
+09:08:46.116 > Heading: 9.00  Accuracy: 3
+09:08:46.122 > Heading: 9.00  Accuracy: 3
+09:08:46.128 > Heading: 9.00  Accuracy: 3
+09:08:46.132 > Heading: 9.00  Accuracy: 3
+09:08:46.138 > Heading: 9.00  Accuracy: 3
+09:08:46.142 > Heading: 9.00  Accuracy: 3
+09:08:46.145 > ✅ Event sensorId=8
+09:08:46.145 > Heading: 9.00  Accuracy: 3
+09:08:46.151 > Heading: 9.00  Accuracy: 3
+09:08:46.155 > Heading: 9.00  Accuracy: 3
+09:08:46.161 > Heading: 9.00  Accuracy: 3
+09:08:46.166 > Heading: 9.00  Accuracy: 3
+09:08:46.172 > Heading: 9.00  Accuracy: 3
+09:08:46.178 > Heading: 9.00  Accuracy: 3
+09:08:46.183 > Heading: 9.00  Accuracy: 3
+09:08:46.188 > Heading: 9.00  Accuracy: 3
+09:08:46.192 > Heading: 9.00  Accuracy: 3
+09:08:46.195 > ✅ Event sensorId=8
+09:08:46.196 > Heading: 9.00  Accuracy: 3
+09:08:46.200 > Heading: 9.00  Accuracy: 3
+09:08:46.207 > Heading: 9.00  Accuracy: 3
+09:08:46.212 > Heading: 9.00  Accuracy: 3
+09:08:46.218 > Heading: 9.00  Accuracy: 3
+09:08:46.223 > Heading: 9.00  Accuracy: 3
+09:08:46.228 > Heading: 9.00  Accuracy: 3
+09:08:46.233 > Heading: 9.00  Accuracy: 3
+09:08:46.240 > Heading: 9.00  Accuracy: 3
+09:08:46.242 > ✅ Event sensorId=8
+09:08:46.243 > Heading: 9.00  Accuracy: 3
+09:08:46.247 > Heading: 9.00  Accuracy: 3
+09:08:46.252 > Heading: 9.00  Accuracy: 3
+09:08:46.258 > Heading: 9.00  Accuracy: 3
+09:08:46.258 > No sensor event (not necessarily an error)
+09:08:46.263 > Heading: 9.00  Accuracy: 3
+09:08:46.269 > Heading: 9.00  Accuracy: 3
+09:08:46.274 > Heading: 9.00  Accuracy: 3
+09:08:46.280 > Heading: 9.00  Accuracy: 3
+09:08:46.284 > Heading: 9.00  Accuracy: 3
+09:08:46.290 > Heading: 9.00  Accuracy: 3
+09:08:46.291 > ✅ Event sensorId=8
+09:08:46.292 > Heading: 9.00  Accuracy: 3
+09:08:46.299 > Heading: 9.00  Accuracy: 3
+09:08:46.302 > Heading: 9.00  Accuracy: 3
+09:08:46.310 > Heading: 9.00  Accuracy: 3
+09:08:46.315 > Heading: 9.00  Accuracy: 3
+09:08:46.319 > Heading: 9.00  Accuracy: 3
+09:08:46.324 > Heading: 9.00  Accuracy: 3
+09:08:46.331 > Heading: 9.00  Accuracy: 3
+09:08:46.336 > Heading: 9.00  Accuracy: 3
+09:08:46.342 > Heading: 9.00  Accuracy: 3
+09:08:46.345 > ✅ Event sensorId=8
+09:08:46.345 > Heading: 9.00  Accuracy: 3
+09:08:46.350 > Heading: 9.00  Accuracy: 3
+09:08:46.355 > Heading: 9.00  Accuracy: 3
+09:08:46.360 > Heading: 9.00  Accuracy: 3
+09:08:46.366 > Heading: 9.00  Accuracy: 3
+09:08:46.372 > Heading: 9.00  Accuracy: 3
+09:08:46.378 > Heading: 9.00  Accuracy: 3
+09:08:46.383 > Heading: 9.00  Accuracy: 3
+09:08:46.388 > Heading: 9.00  Accuracy: 3
+09:08:46.392 > Heading: 9.00  Accuracy: 3
+09:08:46.394 > ✅ Event sensorId=8
+09:08:46.395 > Heading: 9.00  Accuracy: 3
+09:08:46.401 > Heading: 9.00  Accuracy: 3
+09:08:46.406 > Heading: 9.00  Accuracy: 3
+09:08:46.412 > Heading: 9.00  Accuracy: 3
+09:08:46.417 > Heading: 9.00  Accuracy: 3
+09:08:46.422 > Heading: 9.00  Accuracy: 3
+09:08:46.428 > Heading: 9.00  Accuracy: 3
+09:08:46.433 > Heading: 9.00  Accuracy: 3
+09:08:46.438 > Heading: 9.00  Accuracy: 3
+09:08:46.443 > Heading: 9.00  Accuracy: 3
+09:08:46.445 > ✅ Event sensorId=8
+09:08:46.446 > Heading: 9.00  Accuracy: 3
+09:08:46.451 > Heading: 9.00  Accuracy: 3
+09:08:46.457 > Heading: 9.00  Accuracy: 3
+09:08:46.462 > Heading: 9.00  Accuracy: 3
+09:08:46.468 > Heading: 9.00  Accuracy: 3
+09:08:46.473 > Heading: 9.00  Accuracy: 3
+09:08:46.477 > Heading: 9.00  Accuracy: 3
+09:08:46.482 > Heading: 9.00  Accuracy: 3
+09:08:46.487 > Heading: 9.00  Accuracy: 3
+09:08:46.492 > Heading: 9.00  Accuracy: 3
+09:08:46.495 > ✅ Event sensorId=8
+09:08:46.495 > Heading: 9.00  Accuracy: 3
+09:08:46.500 > Heading: 9.00  Accuracy: 3
+09:08:46.504 > Heading: 9.00  Accuracy: 3
+09:08:46.511 > Heading: 9.00  Accuracy: 3
+09:08:46.515 > Heading: 9.00  Accuracy: 3
+09:08:46.521 > Heading: 9.00  Accuracy: 3
+09:08:46.526 > Heading: 9.00  Accuracy: 3
+09:08:46.532 > Heading: 9.00  Accuracy: 3
+09:08:46.538 > Heading: 9.00  Accuracy: 3
+09:08:46.543 > Heading: 9.00  Accuracy: 3
+09:08:46.545 > ✅ Event sensorId=8
+09:08:46.545 > Heading: 9.00  Accuracy: 3
+09:08:46.550 > Heading: 9.00  Accuracy: 3
+09:08:46.556 > Heading: 9.00  Accuracy: 3
+09:08:46.562 > Heading: 9.00  Accuracy: 3
+09:08:46.568 > Heading: 9.00  Accuracy: 3
+09:08:46.573 > Heading: 9.00  Accuracy: 3
+09:08:46.579 > Heading: 9.00  Accuracy: 3
+09:08:46.584 > Heading: 9.00  Accuracy: 3
+09:08:46.590 > Heading: 9.00  Accuracy: 3
+09:08:46.594 > Heading: 9.00  Accuracy: 3
+09:08:46.597 > ✅ Event sensorId=8
+09:08:46.597 > Heading: 9.00  Accuracy: 3
+09:08:46.603 > Heading: 9.00  Accuracy: 3
+09:08:46.608 > Heading: 9.00  Accuracy: 3
+09:08:46.613 > Heading: 9.00  Accuracy: 3
+09:08:46.619 > Heading: 9.00  Accuracy: 3
+09:08:46.624 > Heading: 9.00  Accuracy: 3
+09:08:46.630 > Heading: 9.00  Accuracy: 3
+09:08:46.635 > Heading: 9.00  Accuracy: 3
+09:08:46.640 > Heading: 9.00  Accuracy: 3
+09:08:46.642 > ✅ Event sensorId=8
+09:08:46.642 > Heading: 9.00  Accuracy: 3
+09:08:46.648 > Heading: 9.00  Accuracy: 3
+09:08:46.652 > Heading: 9.0

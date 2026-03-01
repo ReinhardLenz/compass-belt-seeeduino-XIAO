@@ -1,0 +1,236 @@
+ *  Executing task in folder Simplified_Compass_belt_5: C:\Users\lenzre\.platformio\penv\Scripts\platformio.exe device monitor 
+
+--- Terminal on COM21 | 9600 8-N-1
+--- Available filters and text transformations: debug, default, direct, hexlify, log2file, nocontrol, printable, send_on_enter, time
+--- More details at https://bit.ly/pio-monitor-filters
+--- Quit: Ctrl+C | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+12:43:53.252 > Serial monitor connected!
+12:43:53.451 > I2C address found
+12:43:53.779 > ✅ GameRotationVector enabled
+12:43:53.779 > Setup complete
+12:43:53.793 > No sensor event (not necessarily an error)
+12:43:53.987 > ✅ Event sensorId=8
+12:43:53.987 > Heading: 0.00  Accuracy: 3
+12:43:54.042 > ✅ Event sensorId=8
+12:43:54.042 > Heading: 0.00  Accuracy: 3
+12:43:54.094 > ✅ Event sensorId=8
+12:43:54.094 > Heading: 0.00  Accuracy: 3
+12:43:54.140 > ✅ Event sensorId=8
+12:43:54.140 > Heading: 0.00  Accuracy: 3
+12:43:54.180 > ✅ Event sensorId=8
+12:43:54.188 > Heading: 0.00  Accuracy: 3
+ *  Executing task in folder Simplified_Compass_belt_5: C:\Users\lenzre\.platformio\penv\Scripts\platformio.exe device monitor 
+
+--- Terminal on COM21 | 9600 8-N-1
+--- Available filters and text transformations: debug, default, direct, hexlify, log2file, nocontrol, printable, send_on_enter, time
+--- More details at https://bit.ly/pio-monitor-filters
+--- Quit: Ctrl+C | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+12:43:53.252 > Serial monitor connected!
+12:43:53.451 > I2C address found
+12:43:53.779 > ✅ GameRotationVector enabled
+12:43:53.779 > Setup complete
+12:43:53.793 > No sensor event (not necessarily an error)
+12:43:53.987 > ✅ Event sensorId=8
+12:43:53.987 > Heading: 0.00  Accuracy: 3
+12:43:54.042 > ✅ Event sensorId=8
+12:43:54.042 > Heading: 0.00  Accuracy: 3
+12:43:54.094 > ✅ Event sensorId=8
+12:43:54.094 > Heading: 0.00  Accuracy: 3
+12:43:54.140 > ✅ Event sensorId=8
+12:43:54.140 > Heading: 0.00  Accuracy: 3
+12:43:54.180 > ✅ Event sensorId=8
+12:43:54.188 > Heading: 0.00  Accuracy: 3
+
+12:44:30.126 > 11
+12:44:30.141 > Heading: 270.00  Accuracy: 3
+12:44:30.142 > 12
+12:44:30.153 > ✅ Event sensorId=8
+12:44:30.153 > Heading: 270.00  Accuracy: 3
+12:44:30.160 > Heading: 281.00  Accuracy: 3
+12:44:30.175 > Heading: 280.00  Accuracy: 3
+12:44:30.190 > Heading: 254.00  Accuracy: 3
+12:44:30.202 > ✅ Event sensorId=8
+
+
+12:44:53.860 > Heading: 255.00  Accuracy: 3
+12:44:53.873 > ✅ Event sensorId=8
+12:44:53.873 > Heading: 255.00  Accuracy: 3
+12:44:53.873 > Heading: 245.00  Accuracy: 3
+12:44:53.892 > Heading: 263.00  Accuracy: 3
+12:44:53.910 > Heading: 282.00  Accuracy: 3
+12:44:53.921 > ✅ Event sensorId=8
+12:44:53.921 > Heading: 282.00  Accuracy: 3
+12:44:53.921 > Heading: 278.00  Accuracy: 3
+12:44:53.942 > Heading: 255.00  Accuracy: 3
+12:44:53.956 > Heading: 250.00  Accuracy: 3
+12:44:53.970 > ✅ Event sensorId=8
+12:44:53.970 > Heading: 250.00  Accuracy: 3
+12:44:53.971 > Heading: 256.00  Accuracy: 3
+12:44:53.988 > Heading: 281.00  Accuracy: 3
+12:44:54.009 > Heading: 281.00  Accuracy: 3
+12:44:54.021 > ✅ Event sensorId=8
+12:44:54.022 > Heading: 281.00  Accuracy: 3
+12:44:54.023 > Heading: 280.00  Accuracy: 3
+12:44:54.042 > Heading: 258.00  Accuracy: 3
+12:44:54.056 > Heading: 249.00  Accuracy: 3
+12:44:54.070 > ✅ Event sensorId=8
+12:44:54.071 > Heading: 249.00  Accuracy: 3
+12:44:54.073 > Heading: 252.00  Accuracy: 3
+12:44:54.089 > Heading: 280.00  Accuracy: 3
+12:44:54.106 > Heading: 282.00  Accuracy: 3
+12:44:54.119 > ✅ Event sensorId=8
+12:44:54.119 > Heading: 282.00  Accuracy: 3
+12:44:54.124 > Heading: 267.00  Accuracy: 3
+12:44:54.125 > 12
+12:44:54.140 > Heading: 249.00  Accuracy: 3
+12:44:54.140 > 11
+12:44:54.156 > Heading: 256.00  Accuracy: 3
+12:44:54.167 > ✅ Event sensorId=8
+12:44:54.168 > Heading: 256.00  Accuracy: 3
+12:44:54.173 > Heading: 268.00  Accuracy: 3
+12:44:54.174 > 12
+12:44:54.188 > Heading: 283.00  Accuracy: 3
+12:44:54.204 > Heading: 268.00  Accuracy: 3
+12:44:54.216 > ✅ Event sensorId=8
+12:44:54.216 > Heading: 268.00  Accuracy: 3
+12:44:54.221 > Heading: 253.00  Accuracy: 3
+12:44:54.237 > Heading: 249.00  Accuracy: 3
+12:44:54.238 > 11
+12:44:54.253 > Heading: 268.00  Accuracy: 3
+12:44:54.254 > 12
+12:44:54.264 > ✅ Event sensorId=8
+12:44:54.265 > Heading: 268.00  Accuracy: 3
+12:44:54.269 > Heading: 282.00  Accuracy: 3
+12:44:54.285 > Heading: 276.00  Accuracy: 3
+12:44:54.301 > Heading: 251.00  Accuracy: 3
+12:44:54.316 > Heading: 252.00  Accuracy: 3
+12:44:54.326 > ✅ Event sensorId=8
+12:44:54.326 > Heading: 252.00  Accuracy: 3
+12:44:54.334 > Heading: 261.00  Accuracy: 3
+12:44:54.350 > Heading: 282.00  Accuracy: 3
+12:44:54.361 > No sensor event (not necessarily an error)
+12:44:54.365 > Heading: 275.00  Accuracy: 3
+12:44:54.371 > ✅ Event sensorId=8
+12:44:54.371 > Heading: 275.00  Accuracy: 3
+12:44:54.382 > Heading: 255.00  Accuracy: 3
+12:44:54.396 > Heading: 249.00  Accuracy: 3
+12:44:54.397 > 11
+12:44:54.413 > Heading: 268.00  Accuracy: 3
+12:44:54.413 > 12
+12:44:54.425 > ✅ Event sensorId=8
+12:44:54.425 > Heading: 268.00  Accuracy: 3
+12:44:54.430 > Heading: 280.00  Accuracy: 3
+12:44:54.446 > Heading: 281.00  Accuracy: 3
+12:44:54.459 > Heading: 256.00  Accuracy: 3
+12:44:54.474 > ✅ Event sensorId=8
+12:44:54.474 > Heading: 256.00  Accuracy: 3
+12:44:54.479 > Heading: 247.00  Accuracy: 3
+12:44:54.480 > 11
+12:44:54.494 > Heading: 255.00  Accuracy: 3
+12:44:54.504 > Heading: 280.00  Accuracy: 3
+12:44:54.520 > ✅ Event sensorId=8
+12:44:54.520 > Heading: 280.00  Accuracy: 3
+12:44:54.520 > Heading: 282.00  Accuracy: 3
+12:44:54.542 > Heading: 261.00  Accuracy: 3
+12:44:54.554 > Heading: 249.00  Accuracy: 3
+12:44:54.565 > ✅ Event sensorId=8
+12:44:54.565 > Heading: 249.00  Accuracy: 3
+12:44:54.565 > Heading: 259.00  Accuracy: 3
+12:44:54.589 > Heading: 282.00  Accuracy: 3
+12:44:54.604 > Heading: 275.00  Accuracy: 3
+12:44:54.617 > ✅ Event sensorId=8
+12:44:54.617 > Heading: 275.00  Accuracy: 3
+12:44:54.622 > Heading: 259.00  Accuracy: 3
+12:44:54.637 > Heading: 249.00  Accuracy: 3
+12:44:54.652 > Heading: 267.00  Accuracy: 3
+12:44:54.652 > 12
+12:44:54.664 > ✅ Event sensorId=8
+12:44:54.664 > Heading: 267.00  Accuracy: 3
+12:44:54.668 > Heading: 282.00  Accuracy: 3
+12:44:54.685 > Heading: 275.00  Accuracy: 3
+12:44:54.700 > Heading: 251.00  Accuracy: 3
+12:44:54.716 > Heading: 251.00  Accuracy: 3
+12:44:54.725 > ✅ Event sensorId=8
+12:44:54.725 > Heading: 251.00  Accuracy: 3
+12:44:54.732 > Heading: 260.00  Accuracy: 3
+12:44:54.748 > Heading: 282.00  Accuracy: 3
+12:44:54.764 > Heading: 275.00  Accuracy: 3
+12:44:54.776 > ✅ Event sensorId=8
+12:44:54.776 > Heading: 275.00  Accuracy: 3
+12:44:54.782 > Heading: 259.00  Accuracy: 3
+12:44:54.797 > Heading: 249.00  Accuracy: 3
+12:44:54.798 > 11
+12:44:54.813 > Heading: 260.00  Accuracy: 3
+12:44:54.826 > ✅ Event sensorId=8
+12:44:54.826 > Heading: 260.00  Accuracy: 3
+12:44:54.830 > Heading: 274.00  Accuracy: 3
+12:44:54.845 > Heading: 281.00  Accuracy: 3
+12:44:54.860 > Heading: 256.00  Accuracy: 3
+12:44:54.871 > ✅ Event sensorId=8
+12:44:54.871 > Heading: 256.00  Accuracy: 3
+12:44:54.871 > Heading: 245.00  Accuracy: 3
+12:44:54.892 > Heading: 255.00  Accuracy: 3
+12:44:54.909 > Heading: 280.00  Accuracy: 3
+12:44:54.921 > ✅ Event sensorId=8
+12:44:54.923 > Heading: 280.00  Accuracy: 3
+12:44:54.926 > Heading: 282.00  Accuracy: 3
+12:44:54.942 > Heading: 267.00  Accuracy: 3
+12:44:54.942 > 12
+12:44:54.958 > Heading: 250.00  Accuracy: 3
+12:44:54.958 > 11
+12:44:54.971 > ✅ Event sensorId=8
+12:44:54.971 > Heading: 250.00  Accuracy: 3
+12:44:54.971 > Heading: 246.00  Accuracy: 3
+12:44:54.987 > Heading: 270.00  Accuracy: 3
+12:44:54.987 > 12
+12:44:55.007 > Heading: 283.00  Accuracy: 3
+12:44:55.019 > ✅ Event sensorId=8
+12:44:55.020 > Heading: 283.00  Accuracy: 3
+12:44:55.020 > Heading: 276.00  Accuracy: 3
+12:44:55.037 > Heading: 254.00  Accuracy: 3
+12:44:55.056 > Heading: 250.00  Accuracy: 3
+12:44:55.056 > 11
+12:44:55.068 > ✅ Event sensorId=8
+12:44:55.068 > Heading: 250.00  Accuracy: 3
+12:44:55.072 > Heading: 256.00  Accuracy: 3
+12:44:55.087 > Heading: 282.00  Accuracy: 3
+12:44:55.103 > Heading: 274.00  Accuracy: 3
+12:44:55.115 > ✅ Event sensorId=8
+12:44:55.116 > Heading: 274.00  Accuracy: 3
+12:44:55.120 > Heading: 253.00  Accuracy: 3
+12:44:55.135 > Heading: 248.00  Accuracy: 3
+12:44:55.151 > Heading: 270.00  Accuracy: 3
+12:44:55.151 > 12
+12:44:55.166 > Heading: 283.00  Accuracy: 3
+12:44:55.179 > ✅ Event sensorId=8
+12:44:55.179 > Heading: 283.00  Accuracy: 3
+12:44:55.184 > Heading: 277.00  Accuracy: 3
+12:44:55.200 > Heading: 255.00  Accuracy: 3
+12:44:55.215 > Heading: 248.00  Accuracy: 3
+12:44:55.216 > 11
+12:44:55.228 > ✅ Event sensorId=8
+12:44:55.228 > Heading: 248.00  Accuracy: 3
+12:44:55.233 > Heading: 255.00  Accuracy: 3
+12:44:55.248 > Heading: 281.00  Accuracy: 3
+12:44:55.264 > Heading: 279.00  Accuracy: 3
+12:44:55.276 > ✅ Event sensorId=8
+12:44:55.276 > Heading: 279.00  Accuracy: 3
+12:44:55.281 > Heading: 263.00  Accuracy: 3
+12:44:55.296 > Heading: 249.00  Accuracy: 3
+12:44:55.311 > Heading: 262.00  Accuracy: 3
+12:44:55.324 > ✅ Event sensorId=8
+12:44:55.324 > Heading: 262.00  Accuracy: 3
+12:44:55.328 > Heading: 281.00  Accuracy: 3
+12:44:55.344 > Heading: 279.00  Accuracy: 3
+12:44:55.356 > Heading: 255.00  Accuracy: 3
+12:44:55.370 > ✅ Event sensorId=8
+12:44:55.370 > Heading: 255.00  Accuracy: 3
+12:44:55.370 > Heading: 244.00  Accuracy: 3
+12:44:55.386 > No sensor event (not necessarily an error)
+12:44:55.394 > Heading: 256.00  Accuracy: 3
+12:44:55.410 > Heading: 273.00  Accuracy: 3
+12:44:55.411 > 12
+12:44:55.422 > ✅ Event sensorId=8
+12:44:55.422 > Heading: 273.00  Accuracy: 3
+12:44:55.426 > Heading: 282.00  Accuracy: 3
+12:44:55.442 > Heading: 271.00  Accuracy: 3

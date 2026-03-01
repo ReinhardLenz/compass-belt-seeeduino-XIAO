@@ -1,0 +1,813 @@
+// Content from Button.cpp
+#include "Button.h"
+#include <Arduino.h>
+
+Button* Button::instance = nullptr;
+
+Button::Button(int pin, CompassBelt* compassBelt) : button(pin, true, false), compassBelt(compassBelt) {
+    instance = this;
+}
+
+void Button::setup() {
+    button.attachDoubleClick(doubleclick);
+    button.attachClick(singleclick);
+    button.attachLongPressStop(longclick);
+    button.setDebounceMs(20);
+    button.setClickMs(400);
+    button.setPressMs(2000);
+}
+
+void Button::tick() {
+    button.tick();
+}
+
+void Button::doubleclick() {
+    instance->compassBelt->setAlwaysOn(!instance->compassBelt->isAlwaysOn());
+    Serial.println("Double click");
+    
+}
+
+void Button::singleclick() {
+    instance->compassBelt->setNextVibrationInterval();
+    Serial.println("Single click");
+
+}
+
+void Button::longclick() {
+    instance->compassBelt->lampTest();
+    Serial.println("long click");
+
+}
+
+
+// Content from Button.h
+#ifndef BUTTON_H
+#define BUTTON_H
+
+#include "OneButton.h"
+#include "CompassBelt.h"
+
+class Button {
+public:
+    Button(int pin, CompassBelt* compassBelt);
+    void setup();
+    void tick();
+private:
+    OneButton button;
+    CompassBelt* compassBelt;
+    static Button* instance;
+    static void doubleclick();
+    static void singleclick();
+    static void longclick();
+};
+
+#endif // BUTTON_H
+
+// Content from Compass.cpp
+#include "Compass.h"
+
+void Compass::quaternionToEuler(float qr, float qi, float qj, float qk, euler_t* ypr, bool degrees) {
+    float sqr = sq(qr);
+    float sqi = sq(qi);
+    float sqj = sq(qj);
+    float sqk = sq(qk);
+    ypr->yaw = atan2(2.0 * (qi * qj + qk * qr), (sqi - sqj - sqk + sqr));
+    ypr->pitch = asin(-2.0 * (qi * qk - qj * qr) / (sqi + sqj + sqk + sqr));
+    ypr->roll = atan2(2.0 * (qj * qk + qi * qr), (-sqi - sqj + sqk + sqr));
+    if (degrees) {
+        ypr->yaw *= RAD_TO_DEG;
+        ypr->pitch *= RAD_TO_DEG;
+        ypr->roll *= RAD_TO_DEG;
+    }
+}
+
+/*
+void Compass::quaternionToEulerRV(sh2_RotationVector_t* rv, euler_t* ypr, bool degrees)
+{
+    // Read quaternion (adjust field names if your struct differs)
+    const float qi = rv->i;
+    const float qj = rv->j;
+    const float qk = rv->k;
+    const float qw = rv->real;   // sometimes rv->w
+
+    // ... then do the same quaternion->euler math you already do
+    // (copy/paste from your WAcc version, just replacing the input fields)
+}
+*/
+float Compass::getNorthDirection(float yaw) {
+    if (yaw < 0) {
+        return (360 + yaw);
+    } else {
+        return yaw;
+    }
+}
+
+float Compass::ConvertToShownDirection(float AbsDir, int degree_shift) {
+    return ((int(AbsDir) + degree_shift) % 360);
+}
+
+void Compass::quaternionToEulerRV(sh2_RotationVectorWAcc_t* rotational_vector,
+                                  euler_t* ypr, 
+                                  bool degrees) {
+    quaternionToEuler(rotational_vector->real, rotational_vector->i, rotational_vector->j, rotational_vector->k, ypr, degrees);
+}
+
+void Compass::quaternionToEulerGI(sh2_GyroIntegratedRV_t* rotational_vector, 
+                                  euler_t* ypr, 
+                                  bool degrees) {
+    quaternionToEuler(rotational_vector->real, rotational_vector->i, rotational_vector->j, rotational_vector->k, ypr, degrees);
+}
+
+
+void Compass::updateFromSensor(const sh2_SensorValue_t& value) {
+    sensorValue_1 = value;
+    update_sensor_1 = true;
+}
+
+
+float Compass::getHeading(BNO08x* imu, int degree_shift) {
+
+
+    if (update_sensor_1) {
+        if (reportType == SH2_ROTATION_VECTOR) {
+            quaternionToEulerRV(&sensorValue_1.un.rotationVector, &ypr_1, true);
+        }
+
+//        } else if (reportType == SH2_GAME_ROTATION_VECTOR) {
+//            quaternionToEulerRV(&sensorValue_1.un.gameRotationVector, &ypr_1, true);
+//        }
+        update_sensor_1 = false;
+    }
+
+    float absDir = getNorthDirection(ypr_1.yaw);
+    float shownDir = ConvertToShownDirection(absDir, degree_shift);
+    return shownDir;
+}
+
+void Compass::setReports(BNO08x* imu, sh2_SensorId_t reportType, long report_interval)
+{
+    if (!imu->enableReport(reportType, report_interval))
+    {
+        Serial.println("Could not enable rotation vector on BNO08x");
+    }
+}
+
+
+// Content from Compass.h
+
+#ifndef COMPASS_H
+#define COMPASS_H
+
+#include <Arduino.h>
+#include <Wire.h>
+#include <sh2_SensorValue.h>
+#include <SparkFun_BNO08x_Arduino_Library.h>
+
+struct euler_t {
+  float yaw;
+  float pitch;
+  float roll;
+};
+
+class Compass {
+public:
+    Compass() : update_sensor_1(false),   reportType(SH2_GAME_ROTATION_VECTOR), reportIntervalUs(100000L) {}
+    float getHeading(BNO08x* bno08x, int degree_shift);
+    void updateFromSensor(const sh2_SensorValue_t& value);
+    uint8_t getAccuracy() const { return sensorValue_1.status; }
+    long getReportInterval() const { return reportIntervalUs; }
+    static void setReports(BNO08x* bno08x, sh2_SensorId_t reportType, long report_interval);
+
+private:
+    euler_t ypr_1;
+    sh2_SensorValue_t sensorValue_1;
+    bool update_sensor_1;
+    sh2_SensorId_t reportType;
+    long reportIntervalUs;
+
+    static void quaternionToEuler(float qr, float qi, float qj, float qk, euler_t* ypr, bool degrees);
+    static void quaternionToEulerRV(sh2_RotationVectorWAcc_t* rotational_vector, euler_t* ypr, bool degrees);
+    static void quaternionToEulerGI(sh2_GyroIntegratedRV_t* rotational_vector, euler_t* ypr, bool degrees);
+//    static void quaternionToEulerRV(sh2_RotationVector_t* rotational_vector,
+//                                euler_t* ypr, bool degrees);
+
+
+    float getNorthDirection(float yaw);
+    float ConvertToShownDirection(float AbsDir, int degree_shift);
+};
+
+#endif // COMPASS_H
+
+
+
+
+// Content from CompassBelt.cpp
+
+#include "CompassBelt.h"
+
+const long CompassBelt::vibrationIntervalChoices[] = {500, 1500, 2500, 3500};// The default 
+
+CompassBelt::CompassBelt(unsigned long vibrationDuration,
+                         unsigned long vibrationInterval,
+                         uint8_t chipSelect)
+    : _vibrationDuration(vibrationDuration),
+      _vibrationInterval(vibrationInterval),
+      _chipSelect(chipSelect),
+      _bank(&SPI, chipSelect, 0),
+      _haptic(_bank)
+{
+  vibrationInterval_ = vibrationInterval;
+  lastDirection_ = -1;
+  onDuration_ = vibrationDuration;
+  vibrationInterval_ = vibrationInterval;
+  lastOn_ = 0;
+}
+
+void CompassBelt::setupPins() {
+    _bank.begin();
+    _haptic.begin();
+  for (int i = 0; i < 16; i++) {
+    _bank.pinMode(i,OUTPUT);
+  }
+}
+
+/******************************************************************************************************************
+  // When alwaysOn_ is true, shouldStartVibrating will always return true,
+  // meaning the belt will continuously start vibrating in the update method as
+  // the setReports loop iterates.
+  // Concurrently, shouldStopVibrating will always return false, ensuring the
+  belt remains in a vibrating state during consistent head readings.
+*/
+
+void CompassBelt::setAlwaysOn(bool alwaysOn) {
+  alwaysOn_ = alwaysOn;
+}
+/******************************************************************************************************************
+  // setAlwaysOn sets the alwaysOn_ flag based on the double press (in main.ino program)
+  isAlwaysOn simply returns the current state of alwaysOn_. (like a question)
+*/
+bool CompassBelt::isAlwaysOn() {
+  return alwaysOn_;
+}
+/******************************************************************************************************************
+  // Turns off the haptic feedback for the belt.
+  // This function calls the 'off' method of the HapticBelt object,
+  ensuring that any ongoing vibrations are stopped immediately.
+*/
+void CompassBelt::off()
+{
+    _haptic.off();
+  }
+/******************************************************************************************************************
+  //goes around the LED's or vibration motors one time, switching on every one , so see, if all are working
+  //sometimes, there a bad solders or connection or motor is not tightly presses to skin , so it doesn't feel
+  // also with LED's there had been problems with the dupont connectors used.
+  // this is started with long press of the pushbutton
+*/
+void CompassBelt::lampTest() {
+  int numberOfPins = 16;
+  for (int i = 0; i < numberOfPins; i++) {
+    for (int j = 0; j < numberOfPins; j++) {
+      _bank.digitalWrite(j,LOW);//changed to high
+    }
+    _bank.digitalWrite(i,HIGH);//change to low
+    delay(200);
+  }
+  _bank.digitalWrite(numberOfPins - 1,LOW);//change to high
+}
+
+
+
+/*
+  // Direction Change & Initiation: If the heading value results in a new direction
+  //  (calculated and snapped to nearest 18 degrees), the compass belt will update
+  //  the new direction and turn on the belt. This resets lastOn_ to the current time
+  //  returned by millis().
+*/
+void CompassBelt::update(double heading, int degree_shift)
+{
+  if (heading < 0 || heading >= 360) {
+    return;
+  }
+  const double direction_threshold = 3;
+  double direction = round(heading / 22.5) * 22.5;
+//Serial.print("direction: ");
+//  Serial.println(direction);
+
+  if (lastDirection_ != -1 && abs(direction - heading) > direction_threshold)
+    /* The choice of -1 for sentinel variable lastDirection_ is often due to several reasons:
+      // Sentinel Value: -1 is used as a sentinel value to represent an invalid or uninitialized
+      //  state since direction  values are usually non-negative. It helps distinguish between a real
+      //  direction (e.g., 0, 1, 2, ...) and a state where no direction has been set.
+      //
+      // Ease of Checking: Checking if a variable is equal to -1 is straightforward and unambiguous,
+      //  which makes the code easier to read and maintain.
+      //
+      // Common Convention: Using -1 or other negative values as sentinel values is a common
+      //  programming practice, making the code more understandable to other developers who encounter it.
+    */
+  {
+    direction = lastDirection_;
+    //Serial.print(" Heading change too large, keeping last direction: ");
+  }
+
+  if (direction != lastDirection_) {
+    if (lastDirection_ != -1) {
+      _haptic.off(lastDirection_); 
+    }
+    //Serial.println(direction);
+    lastDirection_ = direction;
+    _haptic.on(direction);
+    lastOn_ = millis();
+  }
+  
+  if (shouldStartVibrating()) {
+    _haptic.on(direction);
+    lastOn_ = millis();
+  } else if (shouldStopVibrating()) {
+    _haptic.off(direction);
+  }
+}
+
+
+//******************************************************************************************************************
+  // Vibration should stop if the alwaysOn_ flag is false
+  //  and enough time has passed since lastOn_ to exceed the onDuration_.
+
+bool CompassBelt::shouldStopVibrating() {
+  return !alwaysOn_ && millis() - lastOn_ >= onDuration_;
+}
+
+bool CompassBelt::shouldStartVibrating() {
+  unsigned long timeSinceOn = millis() - lastOn_;
+  return alwaysOn_ || timeSinceOn >= onDuration_ + vibrationInterval_;
+}
+/******************************************************************************************************************
+  // Vibration should stop if the alwaysOn_ flag is false
+  //  and enough time has passed since lastOn_ to exceed the onDuration_.
+*/
+
+
+
+  // Method to set the next vibration interval cyclically
+
+void CompassBelt::setNextVibrationInterval() {
+  static int currentIndex = 0;
+  currentIndex = (currentIndex + 1) % (sizeof(vibrationIntervalChoices) / sizeof(vibrationIntervalChoices[0]));
+  vibrationInterval_ = vibrationIntervalChoices[currentIndex];
+}
+
+
+
+
+
+// Content from CompassBelt.h
+#ifndef COMPASSBELT_H
+#define COMPASSBELT_H
+
+#include <Arduino.h>
+#include <SPI.h>
+#include <MCP23S17.h>
+#include "HapticBelt.h"
+
+class CompassBelt {
+public:
+    CompassBelt(unsigned long vibrationDuration,
+                unsigned long vibrationInterval,
+                uint8_t chipSelect = 0);
+    void update(double heading, int degree_shift);
+    void begin();
+//    void update_old(float heading, int degree_shift = 0);
+    void setNextVibrationInterval(); 
+    void lampTest();
+    void off();
+    bool isAlwaysOn();
+    void setAlwaysOn(bool alwaysOn);
+    void setupPins(); 
+private:
+    HapticBelt* belt_;
+    unsigned long _vibrationDuration;
+    unsigned long _vibrationInterval;
+    unsigned long onDuration_;
+    unsigned long lastOn_;
+    uint8_t _chipSelect;
+    MCP23S17 _bank;
+    HapticBelt _haptic;
+    static const long vibrationIntervalChoices[];
+    unsigned long vibrationInterval_;
+    bool alwaysOn_ = false;
+    bool shouldStopVibrating();
+    bool shouldStartVibrating();
+    double lastDirection_;
+};
+
+
+#endif
+
+
+// Content from HapticBelt.cpp
+#include "HapticBelt.h"
+
+HapticBelt::HapticBelt(MCP23S17& bank)
+    : _bank(bank)
+{
+}
+
+void HapticBelt::begin() {
+  for (int i = 0; i < 16; i++){
+    _bank.pinMode(i, OUTPUT);
+    _bank.digitalWrite(i, LOW);//changed to 
+  }
+  //Serial.println(" HapticBelt::begin completed");
+}
+
+/* Method to check if the direction is valid (used inside  HapticBelt and off)
+// VALIDATION
+//The direction must be greater than or equal to 0.
+//The direction must be less than 360.
+//The direction must be a multiple of 22.5.
+// Valid directions:
+*/
+bool HapticBelt::isDirectionValid(double direction)
+{
+  double check_direction = direction *2;
+  return check_direction >= 0 && check_direction < 720 && (int)check_direction % 45 == 0;
+}
+
+/*  Method used in CompassBelt like this: belt_->on(direction, 255);
+CHOSEN DIRECTION "ON"*/
+
+void HapticBelt::on(double direction)
+{
+  if (!isDirectionValid(direction)) {
+
+    return;
+  }
+  double position = (direction / 22.5);
+//  Serial.print("position: ");
+//  Serial.println(position);
+  uint8_t pos_int = static_cast<uint8_t>(position);
+  //It seems that position is from 0 to 15
+  _bank.digitalWrite(pos_int, HIGH);//changed
+  Serial.println(pos_int); //xxxx
+}
+
+/* Used in CompassBelt like this: belt_->off(direction);
+chosen direction "OFF" */
+void HapticBelt::off(double direction)
+{
+  if (!isDirectionValid(direction)) {
+    return;
+  }
+    double position = (int)(direction / 22.5);
+     uint8_t pos_int = static_cast<uint8_t>(position);
+
+    _bank.digitalWrite(pos_int, LOW);//change 
+
+}
+
+void HapticBelt::off()
+{
+  for (int i = 0; i < 16; i++) {
+  _bank.digitalWrite(i, LOW);//change low
+//  Serial.println(" HapticBelt::off - All Motors OFF");
+  }
+}
+
+// Content from HapticBelt.h
+#ifndef HAPTICBELT_H
+#define HAPTICBELT_H
+
+#include <Arduino.h>
+#include <SPI.h>
+#include <MCP23S17.h>
+#include <Math.h>
+class HapticBelt 
+{
+public:
+    // Constructor takes an already-existing MCP23S17
+    HapticBelt(MCP23S17& bank);
+
+    void begin();
+ //   void on_old();
+ //   void off_old();
+    void on(double direction);
+    void off(double direction);
+    void off();
+
+private:
+    MCP23S17& _bank;
+    bool isDirectionValid(double direction);
+
+};
+
+#endif
+
+
+// Content from main.cpp
+#include <Arduino.h>
+#include "Compass.h"
+#include "Compassbelt.h"
+#include "HapticBelt.h"
+#include "Button.h"
+#include <Wire.h>
+#include <SparkFun_BNO08x_Arduino_Library.h>
+#include "potentiometer.h"
+#define BNO08X_RESET -1
+#define TIMEOUT_BOOT_BNO 100
+#define BNO08X_I2C_ADDRESS 0x4B
+
+unsigned long millisOld;
+const unsigned long vibrationDurationMillis = 200UL;
+const unsigned long vibrationIntervalMillis = 1000UL;
+
+
+const int PIN_SDA = A4;   // works on many cores; otherwise set explicit pin numbers
+const int PIN_SCL = A5;
+
+static uint32_t lastGoodEventMs = 0;
+static uint32_t bootMs = 0;
+static uint32_t lastRecoverAttemptMs = 0;
+
+// Tune these:
+const uint32_t STARTUP_GRACE_MS = 3000;          // wait after setup before any recovery
+const uint32_t NO_EVENT_BEFORE_RECOVER_MS = 4000; // must be "dead" this long before recovery
+const uint32_t RECOVER_COOLDOWN_MS = 5000;        // minimum time between recovery attempts
+
+int degree_shift;
+long lastSerialRecv = -10000L;
+float lastSerialHeading = 0.0f;
+const int alwaysOnButtonPin = 6;
+
+Compass compass;
+BNO08x imu;
+
+static inline void wdtSync() {
+  while (WDT->STATUS.bit.SYNCBUSY) { }
+}
+
+void initWatchdog_2s() {
+  // Route 1kHz clock to WDT (required on SAMD21)
+  GCLK->GENDIV.reg  = GCLK_GENDIV_ID(4) | GCLK_GENDIV_DIV(32); // 32kHz/32 = 1kHz
+  GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(4) |
+                      GCLK_GENCTRL_SRC_OSCULP32K |
+                      GCLK_GENCTRL_GENEN;
+  while (GCLK->STATUS.bit.SYNCBUSY) { }
+
+  GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID_WDT |
+                      GCLK_CLKCTRL_GEN_GCLK4 |
+                      GCLK_CLKCTRL_CLKEN;
+  while (GCLK->STATUS.bit.SYNCBUSY) { }
+
+  // Disable WDT before config
+  WDT->CTRL.reg = 0;
+  wdtSync();
+
+  // Set ~2s period (2048 cycles @ 1kHz)
+  //  WDT->CONFIG.reg = WDT_CONFIG_PER(WDT_CONFIG_PER_2048);
+  //  WDT->CONFIG.reg = WDT_CONFIG_PER(WDT_CONFIG_PER_2048_Val);
+  WDT->CONFIG.reg = WDT_CONFIG_PER(0xB); // 2048 cycles is typically enum value 0xB on SAMD2  wdtSync();
+
+  // Optional: early warning interrupt disabled
+  WDT->EWCTRL.reg = 0;
+  wdtSync();
+
+  // Enable WDT
+  WDT->CTRL.reg = WDT_CTRL_ENABLE;
+  wdtSync();
+}
+
+static inline void feedWatchdog() {
+  WDT->CLEAR.reg = WDT_CLEAR_CLEAR_KEY;
+  wdtSync();
+}
+
+void initBNO085() {
+  delay(1000);
+
+  // Re-start the IMU and re-enable the report
+  if (!imu.begin()) {
+    Serial.println("BNO08x re-init failed");
+    return;
+  }
+  Compass::setReports(&imu, SH2_GAME_ROTATION_VECTOR, compass.getReportInterval());
+  Serial.println("BNO08x re-init OK");
+}
+
+bool i2cBusClear() {
+  pinMode(PIN_SDA, INPUT_PULLUP);
+  pinMode(PIN_SCL, INPUT_PULLUP);
+  delayMicroseconds(5);
+
+  // If SCL is stuck low, we can't clear it here
+  if (digitalRead(PIN_SCL) == LOW) return false;
+
+  // If SDA is stuck low, try to free it by clocking SCL
+  if (digitalRead(PIN_SDA) == LOW) {
+    pinMode(PIN_SCL, OUTPUT);
+    for (int i = 0; i < 9; i++) {
+      digitalWrite(PIN_SCL, HIGH);
+      delayMicroseconds(5);
+      digitalWrite(PIN_SCL, LOW);
+      delayMicroseconds(5);
+    }
+    pinMode(PIN_SCL, INPUT_PULLUP);
+    delayMicroseconds(5);
+  }
+
+  // Generate a STOP: SDA low -> SCL high -> SDA high
+  pinMode(PIN_SDA, OUTPUT);
+  digitalWrite(PIN_SDA, LOW);
+  delayMicroseconds(5);
+
+  pinMode(PIN_SCL, INPUT_PULLUP);
+  delayMicroseconds(5);
+
+  pinMode(PIN_SDA, INPUT_PULLUP);
+  delayMicroseconds(5);
+
+  return (digitalRead(PIN_SDA) == HIGH);
+}
+
+void reinitWire() {
+  Wire.end();
+  delay(10);
+  Wire.begin();
+  Wire.setClock(10000);
+  Wire.setTimeout(50);
+}
+
+CompassBelt  compassBelt(vibrationDurationMillis, vibrationIntervalMillis,7);   // chip select = 0
+void sensorValueToDegree(int &degree_shift);
+Button buttonInstance(alwaysOnButtonPin, &compassBelt);
+
+void waitForUser() {
+  Serial.begin(9600);
+
+  while (!Serial) {
+    ; // wait for Serial Monitor to open
+  }
+
+  Serial.println("=== Waiting for user ===");
+  Serial.println("Send any character to start setup");
+
+  while (!Serial.available()) {
+    ; // wait for user input
+  }
+
+  Serial.read(); // consume char
+  Serial.println("=== Starting setup ===");
+}
+
+
+void setup() {
+    //waitForUser();
+    delay(5000);  // give bootloader time to enumerate
+    Serial.begin(9600);
+
+
+   unsigned long t0 = millis();
+  bool serialReady = false;
+
+  while (millis() - t0 < 2000) {        // Wait max 2 sec
+    if (Serial) {
+      serialReady = true;
+      break;
+    }
+    delay(10);
+  }
+
+  if (serialReady) {
+    Serial.println("Serial monitor connected!");
+    digitalWrite(LED_BUILTIN, HIGH);    // optional indicator
+  } else {
+    // Serial monitor not connected, continue anyway
+  }
+    
+    Wire.begin();
+    Wire.setClock(10000);
+    delay(200);   // IMPORTANT: let BNO085 boot 
+
+
+    if (!imu.begin())
+    {
+        Serial.println("BNO08x not detected!");
+        while (1);
+       Serial.println("BNO08x ready");
+    }
+
+      initWatchdog_2s();
+
+
+                        
+if (!imu.enableGameRotationVector(50)) {
+  Serial.println("❌ enableGameRotationVector failed");
+} else {
+  Serial.println("✅ GameRotationVector enabled");
+}
+
+
+
+  buttonInstance.setup();
+  compassBelt.setupPins(); 
+  Serial.println("Setup complete");
+
+  bootMs = millis();
+  lastGoodEventMs = millis();        // start "alive"
+  lastRecoverAttemptMs = 0;
+
+}
+
+void loop() {
+    //Serial.println(digitalRead(alwaysOnButtonPin));
+    buttonInstance.tick();
+    delay(10);
+
+bool gotEvent = imu.getSensorEvent();
+
+if (gotEvent) {
+    Serial.print("✅ Event sensorId=");
+    Serial.println(imu.sensorValue.sensorId);
+
+    compass.updateFromSensor(imu.sensorValue);  // ← pass event
+    lastGoodEventMs = millis();
+} else {
+    static uint32_t lastPrintMs = 0;
+    if (millis() - lastPrintMs > 1000) {
+        Serial.println("No sensor event (not necessarily an error)");
+        lastPrintMs = millis();
+    }
+}
+
+if (gotEvent) {
+    float heading = compass.getHeading(nullptr, degree_shift);
+    uint8_t acc = compass.getAccuracy();
+
+    Serial.print("Heading: ");
+    Serial.print(heading);
+    Serial.print("  Accuracy: ");
+    Serial.println(acc);
+}
+
+// ✅ Do NOT attempt recovery during startup grace period
+  if (millis() - bootMs < STARTUP_GRACE_MS) {
+    feedWatchdog();
+    return;
+  }
+
+  // ✅ Only recover if we've had no events for long enough
+  bool deadTooLong = (millis() - lastGoodEventMs) > NO_EVENT_BEFORE_RECOVER_MS;
+
+  // ✅ And don't try recovery too frequently
+  bool cooldownOver = (lastRecoverAttemptMs == 0) ||
+                      ((millis() - lastRecoverAttemptMs) > RECOVER_COOLDOWN_MS);
+
+  if (deadTooLong && cooldownOver) {
+    lastRecoverAttemptMs = millis();
+
+    Serial.println("⚠️ No events for too long -> attempting recovery");
+
+    i2cBusClear();
+    reinitWire();
+
+    delay(1000);     // <-- your requested "add some seconds"
+    initBNO085();    // calls imu.begin() + setReports
+  }
+
+  feedWatchdog();
+
+    sensorValueToDegree(degree_shift);
+    float heading = compass.getHeading(&imu, degree_shift);
+    uint8_t acc = compass.getAccuracy();
+
+    Serial.print("Heading: ");
+    Serial.print(heading);
+    Serial.print("  Accuracy: ");
+    Serial.println(acc);
+
+    compassBelt.update(heading, degree_shift);
+}
+
+
+// Content from potentiometer.cpp
+#include "potentiometer.h"
+#include <Arduino.h>
+
+void sensorValueToDegree(int &degree_shift) {
+  int sensorValue = analogRead(A3);
+  degree_shift = int(sensorValue / 2.86666);
+  if (degree_shift > 360) {
+    degree_shift = 360;
+  }
+}
+
+
+// Content from potentiometer.h
+#ifndef POTENTIOMETER_H
+#define POTENTIOMETER_H
+
+void sensorValueToDegree(int &degree_shift);
+
+#endif
+
+

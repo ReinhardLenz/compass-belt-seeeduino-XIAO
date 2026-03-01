@@ -1,0 +1,86 @@
+I am programming and building Compass belt application that drives 16 vibration motors arranged in a circular layout. The motor pointing toward magnetic north is vibrating, creating a simple and intuitive directional indicator.
+
+
+The circuit is a system that integrates a Seeeduino XIAO microcontroller, an MCP23S17 I/O expander, two ULN2803 Darlington Arrays, multiple coin vibration motors, a BNO085 sensor,  and other components such as resistors and push buttons. The circuit is designed to control multiple outputs, including vibration motors, and interfaces with sensors and other peripherals through I2C and SPI communication protocols. 
+
+
+the original program listing attached: 
+
+compass_belt__including_spi_communication.docx
+
+Attached Also the circuit description:
+Circuit_descr_all_motors.docx
+
+With this program and circuit, I have problem with "jittery" signal from BNO085
+It looks lke this:
+12:44:30.153 > ✅ Event sensorId=8
+12:44:30.153 > Heading: 270.00  Accuracy: 3
+12:44:30.160 > Heading: 281.00  Accuracy: 3
+12:44:30.175 > Heading: 280.00  Accuracy: 3
+12:44:30.190 > Heading: 254.00  Accuracy: 3
+12:44:30.202 > ✅ Event sensorId=8
+
+
+12:44:53.860 > Heading: 255.00  Accuracy: 3
+12:44:53.873 > ✅ Event sensorId=8
+12:44:53.873 > Heading: 255.00  Accuracy: 3
+12:44:53.873 > Heading: 245.00  Accuracy: 3
+12:44:53.892 > Heading: 263.00  Accuracy: 3
+12:44:53.910 > Heading: 282.00  Accuracy: 3
+12:44:53.921 > ✅ Event sensorId=8
+
+Maning the Heading changes rapidly within a milliseconds.
+
+I notice, when I remove all program components related to SPI bus and MCP23S17 , the heading signal is very reliable.
+
+To test the behaviour of the circuit,  I have made the test program:
+testing_program_listing.docx
+
+in this program, the 
+void doSpiBurst() {
+  static uint8_t pos = 0;
+  for (uint32_t k = 0; k < SPI_BURST_WRITES; k++) {
+    for (int i = 0; i < 16; i++) bank.digitalWrite(i, (i == pos) ? HIGH : LOW);
+    pos = (pos + 1) & 0x0F;
+  }
+  
+is creating a lot of writing in SPI bus, so it simulates the SPI related traffic in the "compass_belt__including_spi_communication.docx" program, but I can variate the SPI traffic by changing the  SPI_BURST_WRITES between  1 → 8 → 64 → 256
+
+I have variated the parameters in this program over a wide range
+
+uint32_t I2C_CLOCK_HZ = 	10k → 100k → 400k
+uint32_t SPI_CLOCK_HZ = 	try: 100k, 1M, 4M, 8M
+uint32_t SPI_BURST_WRITES =	1 → 8 → 64 → 256
+uint32_t LOOP_DELAY_MS = 	/ try 0, 1, 5, 10
+
+
+and got one clear result: when uint32_t SPI_BURST_WRITES is 256:
+Then heading is not, or only very seldom printed
+
+31:07.646 > ✅ Event sensorId=8
+10:31:07.721 > ✅ Event sensorId=8
+10:31:07.787 > ✅ Event sensorId=8
+10:31:07.855 > ✅ Event sensorId=8
+10:31:07.940 > ✅ Event sensorId=8
+10:31:08.010 > ✅ Event sensorId=8
+10:31:08.076 > ✅ Event sensorId=8
+10:31:08.154 > ✅ Event sensorId=8
+10:31:08.227 > ✅ Event sensorId=8
+
+whereas, when uint32_t SPI_BURST_WRITES is less then 256, for instance like this:
+
+uint32_t I2C_CLOCK_HZ = 10000
+uint32_t SPI_CLOCK_HZ = 4000000
+uint32_t SPI_BURST_WRITES = 64
+uint32_t LOOP_DELAY_MS = 5
+
+Then the program will be able to print out heading.
+16:24:38.002 > Heading: 297.00  Accuracy: 3
+16:24:38.027 > ✅ Event sensorId=8
+16:24:38.056 > Heading: 303.00  Accuracy: 3
+16:24:38.084 > ✅ Event sensorId=8
+16:24:38.109 > Heading: 301.00  Accuracy: 3
+16:24:38.137 > ✅ Event sensorId=8
+16:24:38.165 > Heading: 293.00  Accuracy: 3
+
+I am interpreting this so, that, in the original program listing compass_belt__including_spi_communication.docx , the communication through the SPI bus should be reduced, the writing of input / outputs of the MCP23S17 bank should be reduced. It is not necessary to reduce the SPI_CLOCK_HZ , it doesn't influence the reliability. But the writes/read should be reduced. I think the reason could be maybe, that the I2C bus has the clock stretching property, and when there is a lot of activity in SPI bus side very high, the I2C bus side of the program is maybe suffering because of clock stretching. Now , what my request is, can you give me a complete and changed code for the CompassBelt.cpp CompassBelt.h HapticBelt.h and HapticBelt.cpp implementation files, so that the reads writes operations are slower? 

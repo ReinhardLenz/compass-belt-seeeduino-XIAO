@@ -1,4 +1,3 @@
-
 #ifndef COMPASS_H
 #define COMPASS_H
 
@@ -15,27 +14,42 @@ struct euler_t {
 
 class Compass {
 public:
-    Compass() : update_sensor_1(false),  reportType(SH2_ROTATION_VECTOR), reportIntervalUs(100000L) {}
-    float getHeading(BNO08x* bno08x, int degree_shift);
-    long getReportInterval() const { return reportIntervalUs; }
-    static void setReports(BNO08x* bno08x, sh2_SensorId_t reportType, long report_interval);
+  // Default to GAME_ROTATION_VECTOR because your setup enables it
+  Compass()
+  : update_sensor_1(false),
+    reportType(SH2_GAME_ROTATION_VECTOR),
+    reportIntervalUs(100000L) {}
+
+  // Returns heading in degrees (0..360), with degree_shift applied
+  float getHeading(int degree_shift);
+  // Pass the raw event you read from imu.getSensorEvent()
+  void updateFromSensor(const sh2_SensorValue_t& value);
+
+  // 0..3 as provided by BNO08x status field
+  uint8_t getAccuracy() const { return sensorValue_1.status; }
+
+  long getReportInterval() const { return reportIntervalUs; }
+
+  // Helper to enable reports
+  static void setReports(BNO08x* bno08x, sh2_SensorId_t reportType, long report_interval);
 
 private:
-    euler_t ypr_1;
-    sh2_SensorValue_t sensorValue_1;
-    bool update_sensor_1;
-    sh2_SensorId_t reportType;
-    long reportIntervalUs;
+  euler_t ypr_1{};
+  sh2_SensorValue_t sensorValue_1{};
+  bool update_sensor_1;
+  sh2_SensorId_t reportType;
+  long reportIntervalUs;
 
-    static void quaternionToEuler(float qr, float qi, float qj, float qk, euler_t* ypr, bool degrees);
-    static void quaternionToEulerRV(sh2_RotationVectorWAcc_t* rotational_vector, euler_t* ypr, bool degrees);
-    static void quaternionToEulerGI(sh2_GyroIntegratedRV_t* rotational_vector, euler_t* ypr, bool degrees);
+  static void quaternionToEuler(float qr, float qi, float qj, float qk, euler_t* ypr, bool degrees);
+  static void quaternionToEulerRV(sh2_RotationVectorWAcc_t* rotational_vector, euler_t* ypr, bool degrees);
+  static void quaternionToEulerGI(sh2_GyroIntegratedRV_t* rotational_vector, euler_t* ypr, bool degrees);
 
-    float getNorthDirection(float yaw);
-    float ConvertToShownDirection(float AbsDir, int degree_shift);
+  float getNorthDirection(float yaw);
+  float ConvertToShownDirection(float AbsDir, int degree_shift);
 };
 
 #endif // COMPASS_H
+
 
 
 // Here is the relevant excerpt from sh2_SensorValue.h which defines sh2_SensorValue_t:

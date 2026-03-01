@@ -1,67 +1,93 @@
 #include "HapticBelt.h"
 
 HapticBelt::HapticBelt(MCP23S17& bank)
-    : _bank(bank)
+: _bank(bank),
+  _activeIndex(-1),
+  _isOn(false),
+  _minIntervalUs(800),
+  _lastWriteUs(0)
 {
 }
 
 void HapticBelt::begin() {
-  for (int i = 0; i < 16; i++){
-    _bank.pinMode(i, OUTPUT);
-    _bank.digitalWrite(i, LOW);//changed to 
-  }
-  //Serial.println(" HapticBelt::begin completed");
-}
-
-/* Method to check if the direction is valid (used inside  HapticBelt and off)
-// VALIDATION
-//The direction must be greater than or equal to 0.
-//The direction must be less than 360.
-//The direction must be a multiple of 22.5.
-// Valid directions:
-*/
-bool HapticBelt::isDirectionValid(double direction)
-{
-  double check_direction = direction *2;
-  return check_direction >= 0 && check_direction < 720 && (int)check_direction % 45 == 0;
-}
-
-/*  Method used in CompassBelt like this: belt_->on(direction, 255);
-CHOSEN DIRECTION "ON"*/
-
-void HapticBelt::on(double direction)
-{
-  if (!isDirectionValid(direction)) {
-
-    return;
-  }
-  double position = (direction / 22.5);
-//  Serial.print("position: ");
-//  Serial.println(position);
-  uint8_t pos_int = static_cast<uint8_t>(position);
-  //It seems that position is from 0 to 15
-  _bank.digitalWrite(pos_int, HIGH);//changed
-  Serial.println(pos_int); //xxxx
-}
-
-/* Used in CompassBelt like this: belt_->off(direction);
-chosen direction "OFF" */
-void HapticBelt::off(double direction)
-{
-  if (!isDirectionValid(direction)) {
-    return;
-  }
-    double position = (int)(direction / 22.5);
-     uint8_t pos_int = static_cast<uint8_t>(position);
-
-    _bank.digitalWrite(pos_int, LOW);//change 
-
-}
-
-void HapticBelt::off()
-{
   for (int i = 0; i < 16; i++) {
-  _bank.digitalWrite(i, LOW);//change low
-//  Serial.println(" HapticBelt::off - All Motors OFF");
+    _bank.pinMode(i, OUTPUT);
+    _bank.digitalWrite(i, LOW);
+  }
+  _activeIndex = -1;
+  _isOn = false;
+}
+
+void HapticBelt::setRateLimitUs(uint32_t us) {
+  _minIntervalUs = us;
+}
+
+bool HapticBelt::isDirectionValid(double direction) {
+  double d2 = direction * 2.0;
+  return d2 >= 0.0 && d2 < 720.0 && (((int)d2) % 45 == 0);
+}
+
+uint8_t HapticBelt::dirToIndex(double direction) const {
+  return static_cast<uint8_t>(direction / 22.5);
+}
+
+bool HapticBelt::writePin(uint8_t pin, uint8_t level) {
+  uint32_t now = micros();
+  if ((now - _lastWriteUs) < _minIntervalUs) {
+    return false;                       // too soon; try next loop
+  }
+  _bank.digitalWrite(pin, level);
+  _lastWriteUs = now;
+
+
+  
+  return true;
+}
+
+void HapticBelt::on(double direction) {
+  if (!isDirectionValid(direction)) return;
+
+  const uint8_t idx = dirToIndex(direction);
+
+  // If we believe we're already ON at this index, nothing to do
+  if (_isOn && _activeIndex == static_cast<int8_t>(idx)) {
+    return;
+  }
+
+  // If ON at a different index, turn that one OFF first
+  if (_isOn && _activeIndex >= 0 && _activeIndex != static_cast<int8_t>(idx)) {
+    if (!writePin(static_cast<uint8_t>(_activeIndex), LOW)) {
+      return;  // couldn't write yet; try again next loop
+    }
+    _isOn = false;             // now it's really off
+    _activeIndex = -1;
+  }
+
+  // Turn the requested index ON
+  if (writePin(idx, HIGH)) {
+    _activeIndex = idx;
+    _isOn = true;              // only set true if we actually toggled the pin
+  }
+}
+
+void HapticBelt::off(double direction) {
+  if (!isDirectionValid(direction)) return;
+
+  const uint8_t idx = dirToIndex(direction);
+
+  if (_isOn && _activeIndex == static_cast<int8_t>(idx)) {
+    if (writePin(idx, LOW)) {
+      _isOn = false;
+      _activeIndex = -1;
+    }
+  }
+}
+
+void HapticBelt::off() {
+  if (_isOn && _activeIndex >= 0) {
+    if (writePin(static_cast<uint8_t>(_activeIndex), LOW)) {
+      _isOn = false;
+      _activeIndex = -1;
+    }
   }
 }

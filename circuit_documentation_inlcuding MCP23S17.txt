@@ -1,0 +1,75 @@
+# **Circuit Documentation**
+
+## **Summary**
+
+This circuit is designed to control multiple coin vibration motors using a Seeeduino XIAO microcontroller, an MCP23S17 I/O expander, and two ULN2803 Darlington Arrays. The circuit also includes a BNO085 sensor for motion detection and a push button for user input. The Seeeduino XIAO communicates with the MCP23S17 via SPI, which in turn controls the ULN2803 arrays to drive the vibration motors. The BNO085 sensor is connected via I2C to the Seeeduino XIAO.
+
+## **Component List**
+
+1. **Seeeduino XIAO**  
+   * Description: A compact microcontroller board based on the SAMD21G18 chip.  
+   * Pins: A0 \- D0 \- DAC, A1 \- D1, A2 \- D2, A3 \- D3, A4 \- D4 \- SDA, A5 \- D5 \- SCL, A6 \- D6 \- TX, 5V, GND, 3V3, A10 \- D10 \- MOSI, A9 \- D9 \- MISO, A8 \- D8 \- SCK, A7 \- D7 \- RX  
+2. **ULN2803 Darlington Array (2 units)**  
+   * Description: A high-voltage, high-current Darlington transistor array.  
+   * Pins: I1, I2, I3, I4, I5, I6, I7, I8, O1, O2, O3, O4, O5, O6, O7, O8, GND, COMMON  
+3. **COIN VIBRATION MOTOR (14 units)**  
+   * Description: Small vibration motors used for haptic feedback.  
+   * Pins: \+, \-  
+4. **BNO085**  
+   * Description: A 9-axis sensor for motion tracking.  
+   * Pins: VCC, GND, SCL/SCK/RX, SDA/MISO/TX, ADR/MOSI, CS, INT, RST, PS1, PS0  
+5. **Push Button**  
+   * Description: A simple push button for user input.  
+   * Pins: pin1, pin2  
+6. **MCP23S17**  
+   * Description: A 16-bit I/O expander with SPI interface.  
+   * Pins: GPB0, GPB1, GPB2, GPB3, GPB4, GPB5, GPB6, GPB7, A1, A0, SO, SI, CS, VSS, VDD, INTA, INTB, RESET, A2, GPA1, GPA0, GPA5, GPA4, GPA3, GPA2, GPA7, GPA6, SCK
+
+## **Wiring Details**
+
+### **Seeeduino XIAO**
+
+* **GND** is connected to the GND of the BNO085, push button, both ULN2803 arrays, and the VSS of the MCP23S17.  
+* **3V3** is connected to the VCC and ADR/MOSI of the BNO085 and the VDD of the MCP23S17.  
+* **A4 \- D4 \- SDA** is connected to the SDA/MISO/TX of the BNO085.  
+* **A5 \- D5 \- SCL** is connected to the SCL/SCK/RX of the BNO085.  
+* **A6 \- D6 \- TX** is connected to pin2 of the push button.  
+* **A7 \- D7 \- RX** is connected to the CS of the MCP23S17.  
+* **A8 \- D8 \- SCK** is connected to the SCK of the MCP23S17.  
+* **A9 \- D9 \- MISO** is connected to the SO of the MCP23S17.  
+* **A10 \- D10 \- MOSI** is connected to the SI of the MCP23S17.
+
+### **ULN2803 Darlington Array**
+
+* **COMMON** of both arrays is connected to the positive pins of multiple COIN VIBRATION MOTORS.  
+* **GND** of both arrays is connected to the GND net.  
+* **Inputs (I1-I8)** of both arrays are connected to the corresponding GPA and GPB pins of the MCP23S17.  
+* **Outputs (O1-O8)** of both arrays are connected to the negative pins of the COIN VIBRATION MOTORS.
+
+### **COIN VIBRATION MOTORS**
+
+* **Positive (+)** pins are connected to the COMMON pin of the ULN2803 arrays.  
+* **Negative (-)** pins are connected to the outputs (O1-O8) of the ULN2803 arrays.
+
+### **BNO085**
+
+* **VCC** and **ADR/MOSI** are connected to the 3V3 of the Seeeduino XIAO.  
+* **GND** is connected to the GND net.  
+* **SCL/SCK/RX** is connected to the A5 \- D5 \- SCL of the Seeeduino XIAO.  
+* **SDA/MISO/TX** is connected to the A4 \- D4 \- SDA of the Seeeduino XIAO.
+
+### **Push Button**
+
+* **pin1** is connected to the GND net.  
+* **pin2** is connected to the A6 \- D6 \- TX of the Seeeduino XIAO.
+
+### **MCP23S17**
+
+* **VSS** is connected to the GND net.  
+* **VDD** is connected to the 3V3 of the Seeeduino XIAO.  
+* **CS** is connected to the A7 \- D7 \- RX of the Seeeduino XIAO.  
+* **SCK** is connected to the A8 \- D8 \- SCK of the Seeeduino XIAO.  
+* **SI** is connected to the A10 \- D10 \- MOSI of the Seeeduino XIAO.  
+* **SO** is connected to the A9 \- D9 \- MISO of the Seeeduino XIAO.  
+* **GPA0-GPA7** and **GPB0-GPB7** are connected to the inputs of the ULN2803 arrays.
+
