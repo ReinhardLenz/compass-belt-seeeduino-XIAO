@@ -154,6 +154,12 @@ void waitForUser() {
 
 
 void setup() {
+
+  
+    analogReadResolution(10);      // match your math: 0..1023
+    analogReference(AR_DEFAULT);   // 3.3V ref (VDDANA)
+    pinMode(A2, INPUT);            // explici
+
     //waitForUser();
     delay(5000);  // give bootloader time to enumerate
     Serial.begin(9600);
@@ -232,19 +238,20 @@ void loop() {
 
     // Optional: print once per event
     uint8_t acc = compass.getAccuracy();
+/*  
     Serial.print("✅ Event sensorId=");
     Serial.println(imu.sensorValue.sensorId);
     Serial.print("Heading: ");
     Serial.print(lastHeading);
     Serial.print(" Accuracy: ");
     Serial.println(acc);
-
+*/
     lastGoodEventMs = millis();
   } else {
     // Optional 1s heartbeat
     static uint32_t lastPrintMs = 0;
     if (millis() - lastPrintMs > 1000) {
-      Serial.println("No sensor event (not necessarily an error)");
+      //Serial.println("No sensor event (not necessarily an error)");
       lastPrintMs = millis();
     }
   }
