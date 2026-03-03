@@ -42,7 +42,9 @@ This circuit is a complex embedded system that integrates a variety of component
 
 ## **Circuit diagram**
 
-<img width="2477" height="1781" alt="circuit_image" src="https://github.com/user-attachments/assets/8d295dae-4ca2-45db-b3d6-d9cbdef87bef" />
+
+<img width="3000" height="3253" alt="circuit_image3" src="https://github.com/user-attachments/assets/6893eaf3-517d-42cc-8194-1b0c31090bd7" />
+
 
 ## **Photo of breadboard**
 note, that the potentiometer is missing and there are not motores but LED's instead. Also the TPS63031 is not yet inmplemented, but power supply is from Computer to Seeeduino XIAO. 
@@ -50,123 +52,118 @@ note, that the potentiometer is missing and there are not motores but LED's inst
 ![seeeduino_XIAO_compass_Belt_breadboard_1](https://github.com/user-attachments/assets/f0536608-d132-4b15-991f-f23b8976a1ff)
 
 
+
+# **Circuit Documentation**
+
+## **Summary**
+
+This circuit is a complex system involving a Seeeduino XIAO microcontroller, an MCP23S17 I/O expander, multiple ULN2803 Darlington Arrays, several coin vibration motors, a BNO085 sensor, a TPS63031 power management IC, two 18650 batteries, a potentiometer, a push button, and an SPDT switch. The circuit is designed to control multiple vibration motors using the I/O expander and Darlington arrays, with power management and sensor integration for enhanced functionality.
+
 ## **Component List**
 
 1. **Seeeduino XIAO**  
-   * Description: A compact microcontroller board based on the SAMD21 microcontroller.  
+   * Description: A compact microcontroller board based on the SAMD21G18 chip.  
    * Pins: A0 \- D0 \- DAC, A1 \- D1, A2 \- D2, A3 \- D3, A4 \- D4 \- SDA, A5 \- D5 \- SCL, A6 \- D6 \- TX, 5V, GND, 3V3, A10 \- D10 \- MOSI, A9 \- D9 \- MISO, A8 \- D8 \- SCK, A7 \- D7 \- RX  
 2. **MCP23S17**  
-   * Description: A 16-bit I/O expander with SPI interface.  
+   * Description: 16-bit I/O expander with SPI interface.  
    * Pins: GPB0, GPB1, GPB2, GPB3, GPB4, GPB5, GPB6, GPB7, A1, A0, SO, SI, CS, VSS, VDD, INTA, INTB, RESET, A2, GPA1, GPA0, GPA5, GPA4, GPA3, GPA2, GPA7, GPA6, SCK  
 3. **ULN2803 Darlington Array (2 units)**  
-   * Description: A high-voltage, high-current Darlington transistor array.  
+   * Description: High-voltage, high-current Darlington transistor arrays.  
    * Pins: I1, I2, I3, I4, I5, I6, I7, I8, O3, O4, O5, O6, O7, O8, GND, COMMON, O1, O2  
-4. **COIN VIBRATION MOTOR (7 units)**  
-   * Description: A small motor that provides vibration feedback.  
+4. **COIN VIBRATION MOTOR (14 units)**  
+   * Description: Small DC motors used for vibration feedback.  
    * Pins: \+, \-  
 5. **TPS63031**  
-   * Description: A high-efficiency, low-power buck-boost converter.  
+   * Description: High-efficiency, low-power buck-boost converter.  
    * Pins: VIN, NC, GND, OUT  
 6. **18650 Battery (2 units)**  
-   * Description: A rechargeable lithium-ion battery.  
+   * Description: Rechargeable lithium-ion battery.  
    * Pins: \+, \-  
 7. **BNO085**  
-   * Description: A 9-axis sensor with accelerometer, gyroscope, and magnetometer.  
+   * Description: 9-axis absolute orientation sensor.  
    * Pins: VCC, GND, SCL/SCK/RX, SDA/MISO/TX, ADR/MOSI, CS, INT, RST, PS1, PS0  
 8. **Push Button**  
-   * Description: A simple push button for user input.  
+   * Description: Simple push button switch.  
    * Pins: pin1, pin2  
 9. **Potentiometer Piher 10mm**  
-   * Description: A variable resistor for adjusting resistance.  
-   * Pins: A, Variable, B
+   * Description: Adjustable resistor for variable resistance.  
+   * Pins: A, Variable, B  
+10. **SPDT Switch**  
+    * Description: Single pole double throw switch.  
+    * Pins: 1, C, 2
 
 ## **Wiring Details**
 
 ### **Seeeduino XIAO**
 
-* **A0 \- D0 \- DAC**: Connected to MCP23S17 CS  
-* **A8 \- D8 \- SCK**: Connected to MCP23S17 SCK  
-* **A10 \- D10 \- MOSI**: Connected to MCP23S17 SI  
-* **A9 \- D9 \- MISO**: Connected to MCP23S17 SO  
-* **A6 \- D6 \- TX**: Connected to Push Button pin2  
-* **A3 \- D3**: Connected to Potentiometer Piher 10mm Variable  
-* **A5 \- D5 \- SCL**: Connected to BNO085 SCL/SCK/RX  
-* **A4 \- D4 \- SDA**: Connected to BNO085 SDA/MISO/TX  
-* **A7 \- D7 \- RX**: Connected to MCP23S17 VDD  
-* **3V3**: Connected to BNO085 VCC, ADR/MOSI, Potentiometer Piher 10mm B, TPS63031 OUT  
-* **GND**: Connected to BNO085 GND, Push Button pin1, 18650 \-, ULN2803 Darlington Array GND, Potentiometer Piher 10mm A, TPS63031 GND, MCP23S17 VSS, A2, A1, A0
+* **3V3**: Connected to the positive terminals of multiple coin vibration motors, BNO085 VCC, and TPS63031 OUT.  
+* **GND**: Connected to BNO085 GND, push button pin1, 18650 battery negative terminal, ULN2803 GND, and TPS63031 GND.  
+* **A0 \- D0 \- DAC**: Connected to MCP23S17 CS.  
+* **A8 \- D8 \- SCK**: Connected to MCP23S17 SCK.  
+* **A10 \- D10 \- MOSI**: Connected to MCP23S17 SI.  
+* **A9 \- D9 \- MISO**: Connected to MCP23S17 SO.  
+* **A2 \- D2**: Connected to the variable pin of the Potentiometer.  
+* **A6 \- D6 \- TX**: Connected to push button pin2.  
+* **A5 \- D5 \- SCL**: Connected to BNO085 SCL/SCK/RX.  
+* **A4 \- D4 \- SDA**: Connected to BNO085 SDA/MISO/TX.  
+* **A7 \- D7 \- RX**: Connected to MCP23S17 VDD.
 
 ### **MCP23S17**
 
-* **GPA7**: Connected to ULN2803 Darlington Array I1  
-* **GPA6**: Connected to ULN2803 Darlington Array I2  
-* **GPA5**: Connected to ULN2803 Darlington Array I3  
-* **GPA4**: Connected to ULN2803 Darlington Array I4  
-* **GPA3**: Connected to ULN2803 Darlington Array I5  
-* **GPA2**: Connected to ULN2803 Darlington Array I6  
-* **GPA1**: Connected to ULN2803 Darlington Array I7  
-* **GPA0**: Connected to ULN2803 Darlington Array I8  
-* **GPB7**: Connected to ULN2803 Darlington Array I1 (second unit)  
-* **GPB6**: Connected to ULN2803 Darlington Array I2 (second unit)  
-* **GPB5**: Connected to ULN2803 Darlington Array I3 (second unit)  
-* **GPB4**: Connected to ULN2803 Darlington Array I4 (second unit)  
-* **GPB3**: Connected to ULN2803 Darlington Array I5 (second unit)  
-* **GPB2**: Connected to ULN2803 Darlington Array I6 (second unit)  
-* **GPB1**: Connected to ULN2803 Darlington Array I7 (second unit)  
-* **GPB0**: Connected to ULN2803 Darlington Array I8 (second unit)
+* **CS**: Connected to Seeeduino XIAO A0 \- D0 \- DAC.  
+* **SCK**: Connected to Seeeduino XIAO A8 \- D8 \- SCK.  
+* **SI**: Connected to Seeeduino XIAO A10 \- D10 \- MOSI.  
+* **SO**: Connected to Seeeduino XIAO A9 \- D9 \- MISO.  
+* **VSS**: Connected to ground.  
+* **VDD**: Connected to Seeeduino XIAO A7 \- D7 \- RX.  
+* **GPA0 to GPA7**: Connected to inputs I1 to I8 of the first ULN2803.  
+* **GPB0 to GPB7**: Connected to inputs I1 to I8 of the second ULN2803.
 
 ### **ULN2803 Darlington Array**
 
-* **O1**: Connected to COIN VIBRATION MOTOR \- (first unit)  
-* **O2**: Connected to COIN VIBRATION MOTOR \- (second unit)  
-* **O3**: Connected to COIN VIBRATION MOTOR \- (third unit)  
-* **O8**: Connected to COIN VIBRATION MOTOR \- (fourth unit)  
-* **O7**: Connected to COIN VIBRATION MOTOR \- (fifth unit)  
-* **O6**: Connected to COIN VIBRATION MOTOR \- (sixth unit)
+* **COMMON**: Connected to the 3V3 net.  
+* **GND**: Connected to ground.  
+* **Outputs O1 to O8**: Connected to the negative terminals of various coin vibration motors.
 
 ### **COIN VIBRATION MOTOR**
 
-* **\+**: Connected to 18650 \+ (first unit)  
-* **\+**: Connected to 18650 \+ (second unit)  
-* **\+**: Connected to 18650 \+ (third unit)  
-* **\+**: Connected to 18650 \+ (fourth unit)  
-* **\+**: Connected to 18650 \+ (fifth unit)  
-* **\+**: Connected to 18650 \+ (sixth unit)  
-* **\+**: Connected to 18650 \+ (seventh unit)
+* **\+**: Connected to the 3V3 net.  
+* **\-**: Connected to outputs O1 to O8 of the ULN2803 arrays.
 
 ### **TPS63031**
 
-* **VIN**: Connected to 18650 \+  
-* **OUT**: Connected to Seeeduino XIAO 3V3
+* **VIN**: Connected to SPDT Switch pin 2\.  
+* **GND**: Connected to ground.  
+* **OUT**: Connected to the 3V3 net.
 
 ### **18650 Battery**
 
-* **\-**: Connected to GND net  
-* **\+**: Connected to COIN VIBRATION MOTOR \+, TPS63031 VIN
+* **\+**: Connected to SPDT Switch common pin (C).  
+* **\-**: Connected to ground and the positive terminal of the second 18650 battery.
 
 ### **BNO085**
 
-* **VCC**: Connected to Seeeduino XIAO 3V3  
-* **GND**: Connected to GND net  
-* **SCL/SCK/RX**: Connected to Seeeduino XIAO A5 \- D5 \- SCL  
-* **SDA/MISO/TX**: Connected to Seeeduino XIAO A4 \- D4 \- SDA
+* **VCC**: Connected to the 3V3 net.  
+* **GND**: Connected to ground.  
+* **SCL/SCK/RX**: Connected to Seeeduino XIAO A5 \- D5 \- SCL.  
+* **SDA/MISO/TX**: Connected to Seeeduino XIAO A4 \- D4 \- SDA.
 
 ### **Push Button**
 
-* **pin1**: Connected to GND net  
-* **pin2**: Connected to Seeeduino XIAO A6 \- D6 \- TX
+* **pin1**: Connected to ground.  
+* **pin2**: Connected to Seeeduino XIAO A6 \- D6 \- TX.
 
 ### **Potentiometer Piher 10mm**
 
-* **A**: Connected to GND net  
-* **Variable**: Connected to Seeeduino XIAO A3 \- D3  
-* **B**: Connected to Seeeduino XIAO 3V3
+* **A**: Connected to ground.  
+* **Variable**: Connected to Seeeduino XIAO A2 \- D2.  
+* **B**: Connected to the 3V3 net.
 
-## **Code Documentation**
+### **SPDT Switch**
 
-There is no embedded code provided for this circuit. The microcontroller and other programmable components are not configured with any specific code in this documentation.
-
-
+* **1**: Not connected.  
+* **C**: Connected to the positive terminal of the first 18650 battery.  
+* **2**: Connected to TPS63031 VIN.
 
 
 
