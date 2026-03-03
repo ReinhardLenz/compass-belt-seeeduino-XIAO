@@ -47,17 +47,16 @@ This circuit is a complex embedded system that integrates a variety of component
 
 
 ## **Photo of breadboard**
-note, that the potentiometer is missing and there are not motores but LED's instead. Also the TPS63031 is not yet inmplemented, but power supply is from Computer to Seeeduino XIAO. 
+note, that in the photo the potentiometer is missing and there are not motores but LED's instead. Also the TPS63031 is not yet inmplemented, but power supply is from Computer to Seeeduino XIAO. 
 
 ![seeeduino_XIAO_compass_Belt_breadboard_1](https://github.com/user-attachments/assets/f0536608-d132-4b15-991f-f23b8976a1ff)
-
 
 
 # **Circuit Documentation**
 
 ## **Summary**
 
-This circuit is a complex system involving a Seeeduino XIAO microcontroller, an MCP23S17 I/O expander, multiple ULN2803 Darlington Arrays, several coin vibration motors, a BNO085 sensor, a TPS63031 power management IC, two 18650 batteries, a potentiometer, a push button, and an SPDT switch. The circuit is designed to control multiple vibration motors using the I/O expander and Darlington arrays, with power management and sensor integration for enhanced functionality.
+This circuit is a Seeeduino XIAO microcontroller, an MCP23S17 I/O expander, 2 pcs ULN2803 Darlington Arrays, 16 coin vibration motors, a BNO085 sensor, a TPS63031 power management IC, two 18650 batteries, a potentiometer, a push button, and an ON OFF switch. The circuit is designed to control multiple vibration motors using the I/O expander and Darlington arrays, with power management and sensor integration for enhanced functionality.
 
 ## **Component List**
 
@@ -176,8 +175,9 @@ This circuit is a complex system involving a Seeeduino XIAO microcontroller, an 
 * Libraries used:
 
   * `SPI`
-  * (BNO085 sensor library as required)
-
+  * (BNO085 sensor library sparkfun/SparkFun BNO08x Cortex Based IMU@^1.0.6)
+  * mathertel/OneButton@^2.6.1
+  * adafruit/Adafruit MCP23017 Arduino Library @ ^2.3.2
 ---
 
 ### Code Functionality
@@ -188,10 +188,11 @@ This circuit is a complex system involving a Seeeduino XIAO microcontroller, an 
 * Calculates heading and maps it to one of 16 vibrators positions
 * Activates the corresponding vibrators
 
-Current test behavior:
+Current  behavior:
 
-* GPIOA pins are toggled to create a blinking vibrators pattern
-
+* GPIOA pins are toggled to create a blinking vibrators pattern with different blink length
+* Double click activates continuous vibration
+* long click activates motor test
 ---
 
 ## Future Improvements
@@ -199,6 +200,7 @@ Current test behavior:
 * Improve enclosure and wearable integration
 * Develop a mobile app for configuration via Bluetooth.
 * 3D printed box for the electronics
+* soft start and end ramp for vibration motor
 
 ## ⚙️ Usage
 
