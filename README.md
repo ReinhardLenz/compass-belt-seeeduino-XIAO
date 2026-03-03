@@ -62,32 +62,52 @@ This circuit is a Seeeduino XIAO microcontroller, an MCP23S17 I/O expander, 2 pc
 
 1. **Seeeduino XIAO**  
    * Description: A compact microcontroller board based on the SAMD21G18 chip.  
-   * Pins: A0 \- D0 \- DAC, A1 \- D1, A2 \- D2, A3 \- D3, A4 \- D4 \- SDA, A5 \- D5 \- SCL, A6 \- D6 \- TX, 5V, GND, 3V3, A10 \- D10 \- MOSI, A9 \- D9 \- MISO, A8 \- D8 \- SCK, A7 \- D7 \- RX  
+   * Pins: A0 \- D0 \- DAC, A1 \- D1, A2 \- D2, A3 \- D3, A4 \- D4 \- SDA, A5 \- D5 \- SCL, A6 \- D6 \- TX, 5V, GND, 3V3, A10 \- D10 \- MOSI, A9 \- D9 \- MISO, A8 \- D8 \- SCK, A7 \- D7 \- RX
+
+  ![SeeeduinoXIAO_pinout](https://github.com/user-attachments/assets/0ed14b73-8941-46c7-b2a2-2bc7261bacbb)
+
+
 2. **MCP23S17**  
    * Description: 16-bit I/O expander with SPI interface.  
-   * Pins: GPB0, GPB1, GPB2, GPB3, GPB4, GPB5, GPB6, GPB7, A1, A0, SO, SI, CS, VSS, VDD, INTA, INTB, RESET, A2, GPA1, GPA0, GPA5, GPA4, GPA3, GPA2, GPA7, GPA6, SCK  
-3. **ULN2803 Darlington Array (2 units)**  
+   * Pins: GPB0, GPB1, GPB2, GPB3, GPB4, GPB5, GPB6, GPB7, A1, A0, SO, SI, CS, VSS, VDD, INTA, INTB, RESET, A2, GPA1, GPA0, GPA5, GPA4, GPA3, GPA2, GPA7, GPA6, SCK
+
+  ![MCP23S17](https://github.com/user-attachments/assets/644f30b3-bc0e-443f-adfb-a1b2bee335c3)
+
+   
+4. **ULN2803 Darlington Array (2 units)**  
    * Description: High-voltage, high-current Darlington transistor arrays.  
-   * Pins: I1, I2, I3, I4, I5, I6, I7, I8, O3, O4, O5, O6, O7, O8, GND, COMMON, O1, O2  
-4. **COIN VIBRATION MOTOR (14 units)**  
+   * Pins: I1, I2, I3, I4, I5, I6, I7, I8, O3, O4, O5, O6, O7, O8, GND, COMMON, O1, O2
+
+  ![ULN2803](https://github.com/user-attachments/assets/ced70a70-51d8-48f5-ac68-6810b382a1c9)
+
+   
+6. **COIN VIBRATION MOTOR (14 units)**  
    * Description: Small DC motors used for vibration feedback.  
    * Pins: \+, \-  
-5. **TPS63031**  
+7. **TPS63031**  
    * Description: High-efficiency, low-power buck-boost converter.  
-   * Pins: VIN, NC, GND, OUT  
-6. **18650 Battery (2 units)**  
+   * Pins: VIN, NC, GND, OUT
+
+  ![TPS63031](https://github.com/user-attachments/assets/536e1c79-3bb5-49d2-8afd-97ba39a34019)
+
+
+8. **18650 Battery (2 units)**  
    * Description: Rechargeable lithium-ion battery.  
    * Pins: \+, \-  
-7. **BNO085**  
+9. **BNO085**  
    * Description: 9-axis absolute orientation sensor.  
-   * Pins: VCC, GND, SCL/SCK/RX, SDA/MISO/TX, ADR/MOSI, CS, INT, RST, PS1, PS0  
-8. **Push Button**  
+   * Pins: VCC, GND, SCL/SCK/RX, SDA/MISO/TX, ADR/MOSI, CS, INT, RST, PS1, PS0
+
+  ![BNO085](https://github.com/user-attachments/assets/4857b41c-9c59-40cc-bdcf-2a0eceb9edd8)
+
+
+10. **Push Button**  
    * Description: Simple push button switch.  
    * Pins: pin1, pin2  
-9. **Potentiometer Piher 10mm**  
+11. **Potentiometer Piher 10mm**  
    * Description: Adjustable resistor for variable resistance.  
    * Pins: A, Variable, B  
-10. **SPDT Switch**  
+11. **SPDT Switch**  
     * Description: Single pole double throw switch.  
     * Pins: 1, C, 2
 
