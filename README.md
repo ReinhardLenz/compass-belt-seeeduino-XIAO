@@ -42,8 +42,8 @@ This circuit is a complex embedded system that integrates a variety of component
 
 ## **Circuit diagram**
 
+<img width="2634" height="2855" alt="Seeeduino_XIAO_compass_belt" src="https://github.com/user-attachments/assets/2630b103-8aa5-4fd9-9c6f-97f2a30fcd9f" />
 
-<img width="3000" height="3253" alt="circuit_image3" src="https://github.com/user-attachments/assets/6893eaf3-517d-42cc-8194-1b0c31090bd7" />
 
 
 ## **Photo of breadboard**
