@@ -10,7 +10,7 @@
 
 This repository contains a **Compass belt application** that drives **16 vibration motors arranged in a circular layout**. The motor pointing toward **magnetic north** is vibrating, creating a simple and intuitive directional indicator.
 
-This project is a **compact evolution of an earlier compass belt design** that was based on an **Arduino Mega 2560**. By switching to a **Seeeduino XIAO** combined with an **MCP23S17 I/O expander**, and  the overall size and wiring complexity are significantly reduced while still supporting 16 vibrators. The vibration motors are powered by **ULN2803** Darlington arrays to provide sufficient current, as the **Seeeduino XIAO** alone can't supply enough. The vibration motors draw their power from **18650** batteries, while the **Seeeduino XIAO** controls the logic.
+This project is a **compact evolution of an earlier compass belt design** that was based on an **Arduino Mega 2560**. By switching to a **Seeeduino XIAO** combined with an **MCP23S17 I/O expander**, and  the overall size and wiring complexity are significantly reduced while still supporting 16 vibrators. The vibration motors are powered by **ULN2803** Darlington arrays to provide sufficient current, as the **Seeeduino XIAO** alone can't supply enough. The vibration motors draw their power from **18650** battery, while the **Seeeduino XIAO** controls the logic.
 
 The circuit is a system that integrates a Seeeduino XIAO microcontroller, an MCP23S17 I/O expander, two ULN2803 Darlington Arrays, multiple coin vibration motors, a BNO085 sensor, a TPS63031 power management IC, and other components such as resistors, potentiometers, and push buttons. The circuit is designed to control multiple outputs, including vibration motors, and interfaces with sensors and other peripherals through I2C and SPI communication protocols. The power supply is managed by a TPS63031, which regulates the voltage from 18650 batteries.
 
@@ -47,13 +47,13 @@ This circuit is a complex embedded system that integrates a variety of component
 
 
 ## **Photo of breadboard**
-note, that in the photo the potentiometer is missing and there are not motores but LED's instead. Also the TPS63031 is not yet inmplemented, but power supply is from Computer to Seeeduino XIAO. 
+note, that in the photo  there are no motors but LED's instead, these are better for testing. 
 
 ![Seeeduino-XIAO-compassbelt](https://github.com/user-attachments/assets/df7fa7e6-5b50-4f5a-adc7-13e65c0d710f)
 
 ## **Photo of compass belt**
 
-He marked, in such a way that he didn't make extra pockets for the vibration motors, but wrapped the elastic band around the cylindrical motor like a loop, so that it formed a pocket and then sewed the seam closed, from the side and bottom. Before he did anything else, he pushed the yellow silicone sleeves over the motor's output wires. Then he first soldered the "plus" red terminals of all the motors together with pieces of red wire. He stripped the ends of the wire pieces with that stripping tool, and this tool really speeds up the job. He attach the ends of the wires to the work table with blu-tack. First he soldered two red pieces of wire together, and then attached this connection point to the motor wire. He cut the silicone ribbon cable. In it, the wires of the flat cable have to be separated and cut off in stages and separately. The wire going to the last motor is the longest, the second to last motor branches 6cm before it, the third to last motor branches 12cm before the last one and so on, until all the branch points have been separated at 6cm intervals. There are 16 motors in total, the first 8 motors are powered by the first 8-wire flat cable and the next ones by a second flat cable, which forms itself as if it were the counterpart of the first flat cable; it is basically a mirror image of the first cable, the only difference is that it is 8 * 6 = 48 cm longer, because the next 8 motors are naturally exactly this distance further from the control unit. Next, he also stripped the ends of the flat cable wires. He put silicone glue on all the soldering points, and pulled silicone sleeves over it, and that way he sealed the soldering point from mechanical bending stress. The solder points itself are fragile and does not withstand the constant bending very well when the belt actually goes around the body.
+He marked positions on the elastic belt in such a way that he didn't make extra pockets for the vibration motors, but wrapped the elastic band around the cylindrical motor like a loop, so that it formed a pocket and then sewed the seam closed, from the side and bottom. Before he did anything else, he pushed the yellow silicone sleeves over the motor's output wires. Then he first soldered the "plus" red terminals of all the motors together with pieces of red wire. He stripped the ends of the wire pieces with that stripping tool, and this tool really speeds up the job. He attach the ends of the wires to the work table with blu-tack. First he soldered two red pieces of wire together, and then attached this connection point to the motor wire. He cut the silicone ribbon cable. In it, the wires of the flat cable have to be separated and cut off in stages and separately. The wire going to the last motor is the longest, the second to last motor branches 6cm before it, the third to last motor branches 12cm before the last one and so on, until all the branch points have been separated at 6cm intervals. There are 16 motors in total, the first 8 motors are powered by the first 8-wire flat cable and the next ones by a second flat cable, which forms itself as if it were the counterpart of the first flat cable; it is basically a mirror image of the first cable, the only difference is that it is 8 * 6 = 48 cm longer, because the next 8 motors are this distance further away from the control unit. Next, he also stripped the ends of the flat cable wires. He put silicone glue on all the soldering points, and pulled silicone sleeves over it, and that way he sealed the soldering point from mechanical bending stress. The solder points itself are fragile and does not withstand the constant bending very well when the belt actually goes around the body.
 
 ![compass_belt](https://github.com/user-attachments/assets/d6395764-308e-4d32-aab2-8765e4a8037d)
 
@@ -97,7 +97,7 @@ This circuit is a Seeeduino XIAO microcontroller, an MCP23S17 I/O expander, 2 pc
   ![TPS63031](https://github.com/user-attachments/assets/536e1c79-3bb5-49d2-8afd-97ba39a34019)
 
 
-8. **18650 Battery (2 units)**  
+8. **18650 Battery (1 units)**  
    * Description: Rechargeable lithium-ion battery.  
    * Pins: \+, \-  
 9. **BNO085**  
