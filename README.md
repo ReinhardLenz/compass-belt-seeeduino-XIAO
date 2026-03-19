@@ -57,6 +57,22 @@ He marked positions on the elastic belt in such a way that he didn't make extra 
 
 ![compass_belt](https://github.com/user-attachments/assets/d6395764-308e-4d32-aab2-8765e4a8037d)
 
+## **box for the electronics**
+
+<img width="338" height="299" alt="image" src="https://github.com/user-attachments/assets/d1fd930a-567c-42f1-b588-0a7b7f5555ac" />
+
+## **link to the 3D printable parts for the box**
+
+http://raikkulenz.kapsi.fi/downloadfolder_not_protected/stl_kotelo.zip
+
+## **link to picture of 3D printable parts for the box**
+
+http://raikkulenz.kapsi.fi/downloadfolder_not_protected/tulostettavat_osat.pdf
+
+## **wiring scheme inside the box**
+
+<img width="1051" height="906" alt="wire_scheme" src="https://github.com/user-attachments/assets/903167b9-b4bc-451e-9c1a-16d2d6fd1125" />
+
 
 # **Circuit Documentation**
 
