@@ -74,6 +74,10 @@ http://raikkulenz.kapsi.fi/downloadfolder_not_protected/tulostettavat_osat.pdf
 <img width="1051" height="906" alt="wire_scheme" src="https://github.com/user-attachments/assets/903167b9-b4bc-451e-9c1a-16d2d6fd1125" />
 
 
+## **component placement inside the box**
+
+![innerparts](https://github.com/user-attachments/assets/4e6532e4-a0d7-449e-978c-5a4d758887f4)
+
 # **Circuit Documentation**
 
 ## **Summary**
