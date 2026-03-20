@@ -86,6 +86,12 @@ This circuit is a Seeeduino XIAO microcontroller, an MCP23S17 I/O expander, 2 pc
 
 ## **Component List**
 
+### shopping basket
+
+https://linktr.ee/compassbelt
+
+All necessary component a link to more detailed component.
+
 1. **Seeeduino XIAO**  
    * Description: A compact microcontroller board based on the SAMD21G18 chip.  
    * Pins: A0 \- D0 \- DAC, A1 \- D1, A2 \- D2, A3 \- D3, A4 \- D4 \- SDA, A5 \- D5 \- SCL, A6 \- D6 \- TX, 5V, GND, 3V3, A10 \- D10 \- MOSI, A9 \- D9 \- MISO, A8 \- D8 \- SCK, A7 \- D7 \- RX
