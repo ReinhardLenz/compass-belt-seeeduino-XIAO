@@ -37,7 +37,7 @@ Planned features:
 
 ## **Summary**
 
-This circuit is a complex embedded system that integrates a variety of components, including a microcontroller, a port expander, a Darlington array, vibration motors, a power management IC, a battery, a sensor, a push button, and a potentiometer. The circuit is designed to control multiple vibration motors using a microcontroller and a port expander, with power supplied by a battery and regulated by a power management IC. The system also includes a sensor for additional functionality and a potentiometer for user input.
+This circuit integrates a microcontroller, a port expander, a Darlington array, vibration motors, a power management IC, a battery, an Inertial measurement sensor, a push button, and a potentiometer. The circuit controls multiple vibration motors using a microcontroller and a port expander, with power supplied by a battery and regulated by a power management IC. The system core is an inertial measurement sensor to detect the orientation in earth magnet field, and a pushbutton and potentiometer for user input.
 
 
 ## **Circuit diagram**
@@ -77,6 +77,8 @@ http://raikkulenz.kapsi.fi/downloadfolder_not_protected/tulostettavat_osat.pdf
 ## **component placement inside the box**
 
 ![innerparts](https://github.com/user-attachments/assets/4e6532e4-a0d7-449e-978c-5a4d758887f4)
+
+The potentiometer, the push button and the flip switch are mounted in holes, and are screwed to the wall. The IMU sensor is hold in a bracket on the side, kept horizontally. The base plate and the battery compartment are glued in place with flexible epoxi or silicone mass.
 
 # **Circuit Documentation**
 
