@@ -47,8 +47,7 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 
 ## **Demonstation video link**
 
-[![Watch the video](https://img.youtube.com/vi/urYNUAdMZ/0.jpg)]
-(https://youtube.com/shorts/urYNUAdMZ-0?feature=share)
+[![Demo video](https://img.youtube.com/vi/urYNUAdMZ-0/0.jpg)](https://www.youtube.com/watch?v=urYNUAdMZ-0)
 
 ## **Photo of breadboard**
 note, that in the photo  there are no motors but LED's instead, these are better for testing. 
