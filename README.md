@@ -45,6 +45,10 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 <img width="2634" height="2855" alt="Seeeduino_XIAO_compass_belt" src="https://github.com/user-attachments/assets/2630b103-8aa5-4fd9-9c6f-97f2a30fcd9f" />
 
 
+## **Demonstation video link**
+
+[![Watch the video](https://img.youtube.com/vi/urYNUAdMZ/0.jpg)]
+(https://youtube.com/shorts/urYNUAdMZ-0?feature=share)
 
 ## **Photo of breadboard**
 note, that in the photo  there are no motors but LED's instead, these are better for testing. 
