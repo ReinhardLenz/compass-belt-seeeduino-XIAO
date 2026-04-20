@@ -42,7 +42,7 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 
 ## **Circuit diagram**
 
-<img width="2634" height="2855" alt="Seeeduino_XIAO_compass_belt" src="https://github.com/user-attachments/assets/2630b103-8aa5-4fd9-9c6f-97f2a30fcd9f" />
+<img width="2634" height="2730" alt="circuit_image" src="https://github.com/user-attachments/assets/af59ed9c-ff8e-4278-b359-7e60d8418050" />
 
 
 ## **Demonstation video link**
@@ -74,7 +74,7 @@ http://raikkulenz.kapsi.fi/downloadfolder_not_protected/tulostettavat_osat.pdf
 
 ## **wiring scheme inside the box**
 
-<img width="1051" height="906" alt="wire_scheme" src="https://github.com/user-attachments/assets/903167b9-b4bc-451e-9c1a-16d2d6fd1125" />
+<img width="1264" height="1153" alt="isometric_wiring_scheme" src="https://github.com/user-attachments/assets/0af7ee04-87e3-4010-b116-ce7842fd4e5c" />
 
 
 ## **component placement inside the box**
@@ -152,74 +152,65 @@ All necessary component a link to more detailed component.
 
 ### **Seeeduino XIAO**
 
-* **3V3**: Connected to the positive terminals of multiple coin vibration motors, BNO085 VCC, and TPS63031 OUT.  
-* **GND**: Connected to BNO085 GND, push button pin1, 18650 battery negative terminal, ULN2803 GND, and TPS63031 GND.  
-* **A0 \- D0 \- DAC**: Connected to MCP23S17 CS.  
-* **A8 \- D8 \- SCK**: Connected to MCP23S17 SCK.  
-* **A10 \- D10 \- MOSI**: Connected to MCP23S17 SI.  
-* **A9 \- D9 \- MISO**: Connected to MCP23S17 SO.  
-* **A2 \- D2**: Connected to the variable pin of the Potentiometer.  
-* **A6 \- D6 \- TX**: Connected to push button pin2.  
-* **A5 \- D5 \- SCL**: Connected to BNO085 SCL/SCK/RX.  
-* **A4 \- D4 \- SDA**: Connected to BNO085 SDA/MISO/TX.  
-* **A7 \- D7 \- RX**: Connected to MCP23S17 VDD.
+* **3V3** is connected to the positive terminals of multiple coin vibration motors, the VCC and ADR/MOSI pins of the BNO085, the COMMON pins of both ULN2803 arrays, the B pin of the potentiometer, and the VDD pin of the MCP23S17.  
+* **GND** is connected to the negative terminal of the 18650 battery, the GND pin of the BNO085, pin1 of the push button, the A pin of the potentiometer, the GND pins of both ULN2803 arrays, and the VSS, A2, A1, and A0 pins of the MCP23S17.  
+* **A7 \- D7 \- RX** is connected to the CS pin of the MCP23S17.  
+* **A8 \- D8 \- SCK** is connected to the SCK pin of the MCP23S17.  
+* **A10 \- D10 \- MOSI** is connected to the SI pin of the MCP23S17.  
+* **A9 \- D9 \- MISO** is connected to the SO pin of the MCP23S17.  
+* **A2 \- D2** is connected to the Variable pin of the potentiometer.  
+* **A6 \- D6 \- TX** is connected to pin2 of the push button.  
+* **A5 \- D5 \- SCL** is connected to the SCL/SCK/RX pin of the BNO085.  
+* **A4 \- D4 \- SDA** is connected to the SDA/MISO/TX pin of the BNO085.
 
 ### **MCP23S17**
 
-* **CS**: Connected to Seeeduino XIAO A0 \- D0 \- DAC.  
-* **SCK**: Connected to Seeeduino XIAO A8 \- D8 \- SCK.  
-* **SI**: Connected to Seeeduino XIAO A10 \- D10 \- MOSI.  
-* **SO**: Connected to Seeeduino XIAO A9 \- D9 \- MISO.  
-* **VSS**: Connected to ground.  
-* **VDD**: Connected to Seeeduino XIAO A7 \- D7 \- RX.  
-* **GPA0 to GPA7**: Connected to inputs I1 to I8 of the first ULN2803.  
-* **GPB0 to GPB7**: Connected to inputs I1 to I8 of the second ULN2803.
+* **GPA7 to GPA0** are connected to the I1 to I8 pins of the first ULN2803 Darlington Array.  
+* **GPB7 to GPB0** are connected to the I1 to I8 pins of the second ULN2803 Darlington Array.
 
 ### **ULN2803 Darlington Array**
 
-* **COMMON**: Connected to the 3V3 net.  
-* **GND**: Connected to ground.  
-* **Outputs O1 to O8**: Connected to the negative terminals of various coin vibration motors.
-
-### **COIN VIBRATION MOTOR**
-
-* **\+**: Connected to the 3V3 net.  
-* **\-**: Connected to outputs O1 to O8 of the ULN2803 arrays.
+* **O1 to O8** of the first array are connected to the negative terminals of various coin vibration motors.  
+* **O1 to O8** of the second array are connected to the negative terminals of other coin vibration motors.
 
 ### **TPS63031**
 
-* **VIN**: Connected to SPDT Switch pin 2\.  
-* **GND**: Connected to ground.  
-* **OUT**: Connected to the 3V3 net.
+* **VIN** is connected to pin 2 of the SPDT switch.  
+* **OUT** is connected to the 3V3 net.
 
 ### **18650 Battery**
 
-* **\+**: Connected to SPDT Switch common pin (C).  
-* **\-**: Connected to ground and the positive terminal of the second 18650 battery.
-
-### **BNO085**
-
-* **VCC**: Connected to the 3V3 net.  
-* **GND**: Connected to ground.  
-* **SCL/SCK/RX**: Connected to Seeeduino XIAO A5 \- D5 \- SCL.  
-* **SDA/MISO/TX**: Connected to Seeeduino XIAO A4 \- D4 \- SDA.
-
-### **Push Button**
-
-* **pin1**: Connected to ground.  
-* **pin2**: Connected to Seeeduino XIAO A6 \- D6 \- TX.
-
-### **Potentiometer Piher 10mm**
-
-* **A**: Connected to ground.  
-* **Variable**: Connected to Seeeduino XIAO A2 \- D2.  
-* **B**: Connected to the 3V3 net.
+* **\+** is connected to the C pin of the SPDT switch.  
+* **\-** is connected to the GND net.
 
 ### **SPDT Switch**
 
-* **1**: Not connected.  
-* **C**: Connected to the positive terminal of the first 18650 battery.  
-* **2**: Connected to TPS63031 VIN.
+* **1** is not connected.  
+* **C** is connected to the positive terminal of the 18650 battery.  
+* **2** is connected to the VIN pin of the TPS63031.
+
+### **BNO085**
+
+* **VCC** and **ADR/MOSI** are connected to the 3V3 net.  
+* **GND** is connected to the GND net.  
+* **SCL/SCK/RX** is connected to the A5 \- D5 \- SCL pin of the Seeeduino XIAO.  
+* **SDA/MISO/TX** is connected to the A4 \- D4 \- SDA pin of the Seeeduino XIAO.
+
+### **Push Button**
+
+* **pin1** is connected to the GND net.  
+* **pin2** is connected to the A6 \- D6 \- TX pin of the Seeeduino XIAO.
+
+### **Potentiometer Piher 10mm**
+
+* **A** is connected to the GND net.  
+* **Variable** is connected to the A2 \- D2 pin of the Seeeduino XIAO.  
+* **B** is connected to the 3V3 net.
+
+### **Coin Vibration Motors**
+
+* **\+** terminals are connected to the 3V3 net.  
+* **\-** terminals are connected to the O1 to O8 pins of the ULN2803 Darlington Arrays.
 
 
 
