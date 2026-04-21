@@ -1,9 +1,10 @@
 # Compass Belt (Seeeduino XIAO + MCP23S17)
 
-<img width="751" height="359" alt="compass_illustration" src="https://github.com/user-attachments/assets/4f6872b7-1c5e-4beb-9d7e-95de2bce0bb5" />
+![Diagram](images/01_eksynyt_nainen.png)
 
 
-![keltainen_vyo-vyotairoityna](https://github.com/user-attachments/assets/7560b0e8-bc3e-4529-bb0a-b7f5bcb325cf)
+![Diagram](02_itse_keltainen_vyo.jpg)
+
 
 
 ## Overview
@@ -42,7 +43,7 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 
 ## **Circuit diagram**
 
-<img width="2634" height="2730" alt="circuit_image" src="https://github.com/user-attachments/assets/af59ed9c-ff8e-4278-b359-7e60d8418050" />
+![Diagram](03_circuit_image.png)
 
 
 ## **Demonstation video link**
@@ -52,17 +53,20 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 ## **Photo of breadboard**
 note, that in the photo  there are no motors but LED's instead, these are better for testing. 
 
-![Seeeduino-XIAO-compassbelt](https://github.com/user-attachments/assets/df7fa7e6-5b50-4f5a-adc7-13e65c0d710f)
+![Diagram](04_breadboard_LED.jpg)
+
 
 ## **Photo of compass belt**
 
 He marked positions on the elastic belt in such a way that he didn't make extra pockets for the vibration motors, but wrapped the elastic band around the cylindrical motor like a loop, so that it formed a pocket and then sewed the seam closed, from the side and bottom. Before he did anything else, he pushed the yellow silicone sleeves over the motor's output wires. Then he first soldered the "plus" red terminals of all the motors together with pieces of red wire. He stripped the ends of the wire pieces with that stripping tool, and this tool really speeds up the job. He attach the ends of the wires to the work table with blu-tack. First he soldered two red pieces of wire together, and then attached this connection point to the motor wire. He cut the silicone ribbon cable. In it, the wires of the flat cable have to be separated and cut off in stages and separately. The wire going to the last motor is the longest, the second to last motor branches 6cm before it, the third to last motor branches 12cm before the last one and so on, until all the branch points have been separated at 6cm intervals. There are 16 motors in total, the first 8 motors are powered by the first 8-wire flat cable and the next ones by a second flat cable, which forms itself as if it were the counterpart of the first flat cable; it is basically a mirror image of the first cable, the only difference is that it is 8 * 6 = 48 cm longer, because the next 8 motors are this distance further away from the control unit. Next, he also stripped the ends of the flat cable wires. He put silicone glue on all the soldering points, and pulled silicone sleeves over it, and that way he sealed the soldering point from mechanical bending stress. The solder points itself are fragile and does not withstand the constant bending very well when the belt actually goes around the body.
 
-![compass_belt](https://github.com/user-attachments/assets/d6395764-308e-4d32-aab2-8765e4a8037d)
+![Diagram](06_vyö_ilman_sukkahousuja.jpg)
+
 
 ## **box for the electronics**
 
-<img width="338" height="299" alt="image" src="https://github.com/user-attachments/assets/d1fd930a-567c-42f1-b588-0a7b7f5555ac" />
+![Diagram](07_elektroniikka_laatikko_NX.png)
+
 
 ## **link to the 3D printable parts for the box**
 
@@ -74,12 +78,14 @@ http://raikkulenz.kapsi.fi/downloadfolder_not_protected/tulostettavat_osat.pdf
 
 ## **wiring scheme inside the box**
 
-<img width="1264" height="1153" alt="isometric_wiring_scheme" src="https://github.com/user-attachments/assets/0af7ee04-87e3-4010-b116-ce7842fd4e5c" />
+![Diagram](08_isometrinen_johdotuskaavio.png)
 
 
 ## **component placement inside the box**
 
-![innerparts](https://github.com/user-attachments/assets/4e6532e4-a0d7-449e-978c-5a4d758887f4)
+
+![Diagram](09_elektroniikkalaatikko_sisakalut.jpg)
+
 
 The potentiometer, the push button and the flip switch are mounted in holes, and are screwed to the wall. The IMU sensor is hold in a bracket on the side, kept horizontally. The base plate and the battery compartment are glued in place with flexible epoxi or silicone mass.
 
@@ -101,21 +107,21 @@ All necessary component a link to more detailed component.
    * Description: A compact microcontroller board based on the SAMD21G18 chip.  
    * Pins: A0 \- D0 \- DAC, A1 \- D1, A2 \- D2, A3 \- D3, A4 \- D4 \- SDA, A5 \- D5 \- SCL, A6 \- D6 \- TX, 5V, GND, 3V3, A10 \- D10 \- MOSI, A9 \- D9 \- MISO, A8 \- D8 \- SCK, A7 \- D7 \- RX
 
-  ![SeeeduinoXIAO_pinout](https://github.com/user-attachments/assets/0ed14b73-8941-46c7-b2a2-2bc7261bacbb)
+![Diagram](10_Seeeduino_XIAO_pinnien_merkitykset.jpg)
 
 
 2. **MCP23S17**  
    * Description: 16-bit I/O expander with SPI interface.  
    * Pins: GPB0, GPB1, GPB2, GPB3, GPB4, GPB5, GPB6, GPB7, A1, A0, SO, SI, CS, VSS, VDD, INTA, INTB, RESET, A2, GPA1, GPA0, GPA5, GPA4, GPA3, GPA2, GPA7, GPA6, SCK
 
-  ![MCP23S17](https://github.com/user-attachments/assets/644f30b3-bc0e-443f-adfb-a1b2bee335c3)
+![Diagram](11_MCP23S17_pinnien_merkitykset.jpg)
 
    
 4. **ULN2803 Darlington Array (2 units)**  
    * Description: High-voltage, high-current Darlington transistor arrays.  
    * Pins: I1, I2, I3, I4, I5, I6, I7, I8, O3, O4, O5, O6, O7, O8, GND, COMMON, O1, O2
 
-  ![ULN2803](https://github.com/user-attachments/assets/ced70a70-51d8-48f5-ac68-6810b382a1c9)
+![Diagram](12_ULN2803_pinnien_merkitykset.png)
 
    
 6. **COIN VIBRATION MOTOR (14 units)**  
@@ -125,7 +131,8 @@ All necessary component a link to more detailed component.
    * Description: High-efficiency, low-power buck-boost converter.  
    * Pins: VIN, NC, GND, OUT
 
-  ![TPS63031](https://github.com/user-attachments/assets/536e1c79-3bb5-49d2-8afd-97ba39a34019)
+![Diagram](13_TPS63031_pinnien_merkitykset.png)
+
 
 
 8. **18650 Battery (1 units)**  
@@ -135,7 +142,8 @@ All necessary component a link to more detailed component.
    * Description: 9-axis absolute orientation sensor.  
    * Pins: VCC, GND, SCL/SCK/RX, SDA/MISO/TX, ADR/MOSI, CS, INT, RST, PS1, PS0
 
-  ![BNO085](https://github.com/user-attachments/assets/4857b41c-9c59-40cc-bdcf-2a0eceb9edd8)
+![Diagram](14_BNO085_pinnien_merkitykset.png)
+
 
 
 10. **Push Button**  
