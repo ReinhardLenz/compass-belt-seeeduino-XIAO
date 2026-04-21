@@ -6,6 +6,10 @@
 ![Diagram](images/02_itse_keltainen_vyo.jpg)
 
 
+![Diagram](images/vyö-sukkahousut_henkselit.jpg)
+
+
+
 
 ## Overview
 
@@ -85,6 +89,10 @@ http://raikkulenz.kapsi.fi/downloadfolder_not_protected/tulostettavat_osat.pdf
 
 
 ![Diagram](images/09_elektroniikkalaatikko_sisakalut.jpg)
+
+## **photo of components inside the box**
+
+![Diagram](images/kotelo-avattuna.jpg)
 
 
 The potentiometer, the push button and the flip switch are mounted in holes, and are screwed to the wall. The IMU sensor is hold in a bracket on the side, kept horizontally. The base plate and the battery compartment are glued in place with flexible epoxi or silicone mass.
