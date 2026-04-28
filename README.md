@@ -47,7 +47,7 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 
 ## **Circuit diagram**
 
-![Diagram](images/03_circuit_image.png)
+![Diagram](images/03_circuit_imageA.png)
 
 
 ## **Demonstation video link**
@@ -82,7 +82,7 @@ http://raikkulenz.kapsi.fi/downloadfolder_not_protected/tulostettavat_osat.pdf
 
 ## **wiring scheme inside the box**
 
-![Diagram](images/08_isometrinen_johdotuskaavio.png)
+![Diagram](images/_08_isometrinen_johdotuskaavio_A.png)
 
 
 ## **component placement inside the box**
@@ -160,9 +160,13 @@ All necessary component a link to more detailed component.
 11. **Potentiometer Piher 10mm**  
    * Description: Adjustable resistor for variable resistance.  
    * Pins: A, Variable, B  
-11. **SPDT Switch**  
+12. **SPDT Switch**  
     * Description: Single pole double throw switch.  
     * Pins: 1, C, 2
+13. **Resistor**  
+    * Description: 10k Ohm resistor.  
+    * Pins: pin1, pin2
+
 
 ## **Wiring Details**
 
@@ -183,6 +187,7 @@ All necessary component a link to more detailed component.
 
 * **GPA7 to GPA0** are connected to the I1 to I8 pins of the first ULN2803 Darlington Array.  
 * **GPB7 to GPB0** are connected to the I1 to I8 pins of the second ULN2803 Darlington Array.
+* **RESET**: Connected to pin1 of the Resistor.
 
 ### **ULN2803 Darlington Array**
 
@@ -204,6 +209,11 @@ All necessary component a link to more detailed component.
 * **1** is not connected.  
 * **C** is connected to the positive terminal of the 18650 battery.  
 * **2** is connected to the VIN pin of the TPS63031.
+
+### **Resistor**
+
+* **pin1**: Connected to the RESET pin of MCP23S17.  
+* **pin2**: Connected to the 3V3 line.
 
 ### **BNO085**
 
