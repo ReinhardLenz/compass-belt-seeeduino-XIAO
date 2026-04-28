@@ -82,7 +82,7 @@ http://raikkulenz.kapsi.fi/downloadfolder_not_protected/tulostettavat_osat.pdf
 
 ## **wiring scheme inside the box**
 
-![Diagram](images/_08_isometrinen_johdotuskaavio_A.png)
+![Diagram](images/08_isometrinen_johdotuskaavio_A.png)
 
 
 ## **component placement inside the box**
