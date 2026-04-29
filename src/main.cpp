@@ -39,6 +39,9 @@ static inline void wdtSync() {
   while (WDT->STATUS.bit.SYNCBUSY) { }
 }
 
+#define DBG_PRINTLN(x) do { if (Serial) Serial.println(x); } while(0)
+#define DBG_PRINT(x)   do { if (Serial) Serial.print(x); } while(0)
+
 void initWatchdog_2s() {
   // Route 1kHz clock to WDT (required on SAMD21)
   GCLK->GENDIV.reg  = GCLK_GENDIV_ID(4) | GCLK_GENDIV_DIV(32); // 32kHz/32 = 1kHz
@@ -140,32 +143,41 @@ void waitForUser() {
   while (!Serial) {
     ; // wait for Serial Monitor to open
   }
-
-  Serial.println("=== Waiting for user ===");
-  Serial.println("Send any character to start setup");
+  DBG_PRINTLN("=== Waiting for user ===");
+  DBG_PRINT("Send any character to start setup");
 
   while (!Serial.available()) {
     ; // wait for user input
   }
 
   Serial.read(); // consume char
-  Serial.println("=== Starting setup ===");
+  
+  DBG_PRINTLN("=== Starting setup ===");
 }
 
+
+void blinkCode(int n) {
+  for (int i = 0; i < n; i++) {
+    digitalWrite(LED_BUILTIN, HIGH); delay(150);
+    digitalWrite(LED_BUILTIN, LOW);  delay(150);
+  }
+  delay(600);
+}
 
 void setup() {
 
   
-    analogReadResolution(10);      // match your math: 0..1023
-    analogReference(AR_DEFAULT);   // 3.3V ref (VDDANA)
-    pinMode(A2, INPUT);            // explici
+  analogReadResolution(10);      // match your math: 0..1023
+  analogReference(AR_DEFAULT);   // 3.3V ref (VDDANA)
+  pinMode(A2, INPUT);            // explici
 
-    //waitForUser();
-    delay(5000);  // give bootloader time to enumerate
-    Serial.begin(9600);
+  //waitForUser();
+  delay(5000);  // give bootloader time to enumerate
+  blinkCode(1); // 1 blink = setup start
+  Serial.begin(9600);
+  blinkCode(2); // 1 blink = setup start
 
-
-   unsigned long t0 = millis();
+  unsigned long t0 = millis();
   bool serialReady = false;
 
   while (millis() - t0 < 2000) {        // Wait max 2 sec
@@ -182,34 +194,36 @@ void setup() {
   } else {
     // Serial monitor not connected, continue anyway
   }
-    
-    Wire.begin();
-    Wire.setClock(10000);
-    delay(200);   // IMPORTANT: let BNO085 boot 
+  
+
+  Wire.begin();
+  blinkCode(3); // 3 blinks = Wire started
+  Wire.setClock(10000);
+  delay(300);   // IMPORTANT: let BNO085 boot 
+
+  int retries = 0;
+  while (!imu.begin() && retries < 10) {
+    blinkCode(9); // IMU begin retry marker
+    delay(500);
+    retries++;
+  }
+  blinkCode(4);  // after imu.begin loop
 
 
-    if (!imu.begin())
-    {
-        Serial.println("BNO08x not detected!");
-        while (1);
-       Serial.println("BNO08x ready");
-    }
-
-      initWatchdog_2s();
-
-
+  initWatchdog_2s();
                         
-if (!imu.enableGameRotationVector(50)) {
-  Serial.println("❌ enableGameRotationVector failed");
-} else {
-  Serial.println("✅ GameRotationVector enabled");
-}
+  if (!imu.enableGameRotationVector(50)) {
+    blinkCode(7); // enable report failed
+  } else {
+    blinkCode(5); // enabled ok
+  }
 
-
-
+  
   buttonInstance.setup();
   compassBelt.setupPins(); 
-  Serial.println("Setup complete");
+  
+  blinkCode(6); // 6 blinks = setup done
+  DBG_PRINTLN("Setup complete");
 
   bootMs = millis();
   lastGoodEventMs = millis();        // start "alive"
@@ -235,7 +249,7 @@ void loop() {
 
     // Compute heading once for this event, using the latest degree_shift
     lastHeading = compass.getHeading(degree_shift);
-
+    DBG_PRINTLN(lastHeading);
     // Optional: print once per event
     uint8_t acc = compass.getAccuracy();
 /*  
@@ -272,7 +286,7 @@ void loop() {
                       ((millis() - lastRecoverAttemptMs) > RECOVER_COOLDOWN_MS);
   if (deadTooLong && cooldownOver) {
     lastRecoverAttemptMs = millis();
-    Serial.println("⚠️ No events for too long -> attempting recovery");
+   DBG_PRINTLN("⚠️ No events for too long -> attempting recovery");
     i2cBusClear();
     reinitWire();
     delay(1000);
