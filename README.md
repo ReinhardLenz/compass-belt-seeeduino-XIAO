@@ -34,8 +34,6 @@ The circuit is a system that integrates a Seeeduino XIAO microcontroller, an MCP
 * Absolute orientation sensing via BNO085 (I2C)
 * Compact form factor using Seeeduino XIAO
 
-Planned features:
-3D box
 ---
 
 # **Circuit Documentation**
@@ -75,6 +73,11 @@ He marked positions on the elastic belt in such a way that he didn't make extra 
 ## **link to the 3D printable parts for the box**
 
 http://raikkulenz.kapsi.fi/downloadfolder_not_protected/stl_kotelo.zip
+
+## **link to the original box modifyable NX design prt parts**
+
+http://raikkulenz.kapsi.fi/downloadfolder_not_protected/NX2-project.zip
+
 
 ## **link to picture of 3D printable parts for the box**
 
@@ -273,7 +276,6 @@ Current  behavior:
 
 * Improve enclosure and wearable integration
 * Develop a mobile app for configuration via Bluetooth.
-* 3D printed box for the electronics
 * soft start and end ramp for vibration motor
 
 ## ⚙️ Usage
