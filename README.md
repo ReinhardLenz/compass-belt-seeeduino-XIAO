@@ -76,7 +76,7 @@ http://raikkulenz.kapsi.fi/downloadfolder_not_protected/stl_kotelo.zip
 
 ## **link to the original box modifyable NX design prt parts**
 
-http://raikkulenz.kapsi.fi/downloadfolder_not_protected/NX2-project.zip
+http://raikkulenz.kapsi.fi/downloadfolder_not_protected/NX-seeed-compassbelt.zip
 
 
 ## **link to picture of 3D printable parts for the box**
