@@ -72,16 +72,16 @@ He marked positions on the elastic belt in such a way that he didn't make extra 
 
 ## **link to the 3D printable parts for the box**
 
-http://raikkulenz.kapsi.fi/downloadfolder_not_protected/stl_kotelo.zip
+https://raikkulenz.kapsi.fi/downloadfolder_not_protected/stl_kotelo.zip
 
 ## **link to the original box modifyable NX design prt parts**
 
-http://raikkulenz.kapsi.fi/downloadfolder_not_protected/NX-seeed-compassbelt.zip
+https://raikkulenz.kapsi.fi/downloadfolder_not_protected/NX-seeed-compassbelt.zip
 
 
 ## **link to picture of 3D printable parts for the box**
 
-http://raikkulenz.kapsi.fi/downloadfolder_not_protected/tulostettavat_osat.pdf
+https://raikkulenz.kapsi.fi/downloadfolder_not_protected/tulostettavat_osat.pdf
 
 ## **wiring scheme inside the box**
 
