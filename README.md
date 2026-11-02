@@ -114,6 +114,30 @@ This circuit is a Seeeduino XIAO microcontroller, an MCP23S17 I/O expander, 2 pc
 
 https://linktr.ee/compassbelt
 
+### cost estimation
+
+## Cost List
+
+| Price (EUR) | Component |
+| ---: | --- |
+| 16.76 | Seeeduino XIAO SAMD21 Cortex M0+ Nano |
+| 29.97 | BNO085 AR VR IMU High Accuracy Nine-Axis 9DOF AHRS Sensor Module |
+| 5.00 | TPS63031DSKR step-up power supply module |
+| 3.00 | MCP23S17 I/O Extender Chip |
+| 3.00 | ULN2803APG Darlington Transistor IC Chip |
+| 0.30 | ABS 18650 Power Bank Case 1 x |
+| 2.17 | Terminal Linear Taper Rotary potentiometer for Arduino |
+| 1.00 | Mini Toggle Switch SMTS-102 |
+| 1.00 | button No lock switch 7mm miniature, yellow, PBS-110 NO |
+| 34.00 | 16 pcs vibration motors |
+| 0.37 | JST XH 2.54mm connector 16 pin and 5 pin |
+| 1.50 | 2.54mm DIY Prototype Paper PCB Universal Experiment Matrix Circuit Board |
+| 5.00 | Cables (10P Multi-core Silicone Parallel Wire AWG30) |
+| 15.00 | 3D print of box |
+| 10.00 | others |
+| **128.07** | **Total costs** |
+
+
 All necessary component a link to more detailed component.
 
 1. **Seeeduino XIAO**  
