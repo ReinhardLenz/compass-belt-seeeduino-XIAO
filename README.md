@@ -45,9 +45,8 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 
 ## **Circuit diagram**
 
-![Diagram](images/03_circuit_imageA.png)
+![Diagram](images/Schematic_Compass-belt-control_TPS63031_2026-11-05.png)
 
-https://app.cirkitdesigner.com/project/9b29e565-3164-40a9-9c1e-fdfed5ba1000
 
 
 ## **Demonstation video link**
