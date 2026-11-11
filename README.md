@@ -47,7 +47,14 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 
 ![Diagram](images/Schematic_Compass-belt-control_TPS63031_2026-11-05.png)
 
+## **PCB design**
 
+![Diagram](images/PCB_design_colored.png)
+
+
+## **Gerber file PCB production**
+
+https://github.com/ReinhardLenz/compass-belt-seeeduino-XIAO/tree/reliable_setup_PCB/images/Gerber_Compass-belt-control.zip
 
 ## **Demonstation video link**
 
@@ -69,6 +76,7 @@ He marked positions on the elastic belt in such a way that he didn't make extra 
 ## **box for the electronics**
 
 ![Diagram](images/07_elektroniikka_laatikko_NX.png)
+
 
 
 ## **link to the 3D printable parts for the box**
