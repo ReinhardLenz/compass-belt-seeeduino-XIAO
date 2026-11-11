@@ -54,7 +54,7 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 
 ## **Gerber file PCB production**
 
-https://github.com/ReinhardLenz/compass-belt-seeeduino-XIAO/tree/reliable_setup_PCB/images/Gerber_Compass-belt-control.zip
+https://github.com/ReinhardLenz/compass-belt-seeeduino-XIAO/blob/reliable_setup_PCB/images/Gerber_Compass-belt-control_TPS63031_PCB_Compass-belt-control_TPS63031_2026-11-05.zip
 
 ## **Demonstation video link**
 
