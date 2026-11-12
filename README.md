@@ -47,6 +47,14 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 
 ![Diagram](images/Schematic_Compass-belt-control_TPS63031_2026-11-05.png)
 
+
+## **Link to CirkitDesign Wiring scheme**
+
+This method of representation is more intuitive; the components are not merely depicted symbolically, but are also shown in a way that reflects their actual physical form. However, since there are no "ground" or "VCC" symbols, the underlying principle may not be as clearly apparent.
+
+https://app.cirkitdesigner.com/project/9b29e565-3164-40a9-9c1e-fdfed5ba1000
+
+
 ## **PCB design**
 
 ![Diagram](images/PCB_design_colored.png)
@@ -55,6 +63,8 @@ This circuit integrates a microcontroller, a port expander, a Darlington array, 
 ## **Gerber file PCB production**
 
 https://github.com/ReinhardLenz/compass-belt-seeeduino-XIAO/blob/reliable_setup_PCB/images/Gerber_Compass-belt-control_TPS63031_PCB_Compass-belt-control_TPS63031_2026-11-05.zip
+
+
 
 ## **Demonstation video link**
 
